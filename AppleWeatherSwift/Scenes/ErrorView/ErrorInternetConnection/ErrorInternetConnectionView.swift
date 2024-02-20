@@ -12,44 +12,43 @@ struct ErrorInternetConnectionView: View {
     
     
     var body: some View {
-        ZStack{
-            
-            ErrorAnimationBackgroundView()
-            
-            VStack (
-                alignment: .leading,
-                spacing: 40
-            ){
-                HStack {
-                    Spacer()
-                    
-                    Button(action: onRefreshTap) {
-                        Image.systemReload
-                            .cornerRadius(40)
-                            .accentColor(.tabBar)
-                        
-                    }
-                    .buttonStyle(ReloadButton())
-                }
-                
-                Image.systemNetworkError
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 49)
-                
-                Text("error.Internet.Connection.Title")
-                    .modifier(TitleModifier())
-                    .foregroundColor(.mainText)
-                
-                Text("error.Internet.Connection..Message")
-                    .modifier(ErrorInfoModifier())
-                
+        
+        VStack (
+            alignment: .leading,
+            spacing: 40
+        ){
+            HStack {
                 Spacer()
                 
+                Button(action: onRefreshTap) {
+                    Image.systemReload
+                        .cornerRadius(40)
+                        .accentColor(.tabBar)
+                    
+                }
+                .buttonStyle(ReloadButton())
             }
-            .padding(.top, 16)
-            .padding()
+            
+            Image.systemNetworkError
+                .resizable()
+                .scaledToFit()
+                .frame(width: 49)
+            
+            Text("error.Internet.Connection.Title")
+                .modifier(TitleModifier())
+                .foregroundColor(.mainText)
+            
+            Text("error.Internet.Connection..Message")
+                .modifier(ErrorInfoModifier())
+            
+            Spacer()
+            
         }
+        .padding(.top, 16)
+        .padding()
+        .background(
+            ErrorAnimationBackgroundView()
+        )
     }
 }
 
