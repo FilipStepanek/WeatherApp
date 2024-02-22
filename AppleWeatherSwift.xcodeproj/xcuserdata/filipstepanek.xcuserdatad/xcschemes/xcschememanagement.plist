@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AppleWeatherSwift.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Tools for plug-in “RswiftModifyXcodePackages”.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>WeatherAppAppleWatch Watch App.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>WeatherAppWidgetsExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>852DB8BF2B74B3AC00596FFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>852DB8CE2B74B3AE00596FFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>852DB8D82B74B3AE00596FFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85412DE32B826D21000EB544</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>857AC6A82AF22F0B00C4906F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

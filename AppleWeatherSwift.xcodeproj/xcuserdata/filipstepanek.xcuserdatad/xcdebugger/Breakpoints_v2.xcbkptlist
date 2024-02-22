@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "162ABA95-1970-44E5-8B82-C542A14E8AA9"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD1CBCEF-8CF7-4FC2-86AD-1B93B00F18EE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppleWeatherSwift/Scenes/TodayView/ViewModel/TodayViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "onRefresh()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AD1CBCEF-8CF7-4FC2-86AD-1B93B00F18EE - 5856da70934b09bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppleWeatherSwift.TodayViewModel.setupBinding() -&gt; ()"
+                  moduleName = "AppleWeatherSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/filipstepanek/Documents/CODE/WeatherApp/AppleWeatherSwift/Scenes/TodayView/ViewModel/TodayViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "AD1CBCEF-8CF7-4FC2-86AD-1B93B00F18EE - 792dc7086576c85a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppleWeatherSwift.TodayViewModel.onRefresh() -&gt; ()"
+                  moduleName = "AppleWeatherSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/filipstepanek/Documents/CODE/WeatherApp/AppleWeatherSwift/Scenes/TodayView/ViewModel/TodayViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "376">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
