@@ -102,6 +102,12 @@
         }
       }
     },
+    "Configuration" : {
+
+    },
+    "Current Weather" : {
+
+    },
     "day.clear.sky.message" : {
       "localizations" : {
         "cs" : {
@@ -229,6 +235,9 @@
           }
         }
       }
+    },
+    "Favorite Emoji" : {
+
     },
     "few.clouds.message" : {
       "localizations" : {
@@ -486,7 +495,7 @@
         }
       }
     },
-    "My Widgets" : {
+    "My Widget" : {
 
     },
     "night.clear.sky.message" : {
@@ -520,9 +529,6 @@
           }
         }
       }
-    },
-    "Not implemented" : {
-
     },
     "Now" : {
 
@@ -640,7 +646,13 @@
         }
       }
     },
-    "This is my example widget." : {
+    "Temperature: %@°C" : {
+
+    },
+    "This is an example widget" : {
+
+    },
+    "This is an example widget." : {
 
     },
     "thunderstorm.message" : {

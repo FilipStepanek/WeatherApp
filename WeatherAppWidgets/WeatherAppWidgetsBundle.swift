@@ -10,7 +10,8 @@ import SwiftUI
 
 @main
 struct WeatherAppWidgetsBundle: WidgetBundle {
+    
     var body: some Widget {
-        WeatherAppWidgets()
+        WidgetExtension()
     }
 }
