@@ -35,6 +35,9 @@
         }
       }
     },
+    "%@°C" : {
+
+    },
     "%@hPa" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -103,9 +106,6 @@
       }
     },
     "Configuration" : {
-
-    },
-    "Current Weather" : {
 
     },
     "day.clear.sky.message" : {
@@ -645,9 +645,6 @@
           }
         }
       }
-    },
-    "Temperature: %@°C" : {
-
     },
     "This is an example widget" : {
 

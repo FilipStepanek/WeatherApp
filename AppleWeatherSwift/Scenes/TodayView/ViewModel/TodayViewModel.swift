@@ -84,3 +84,4 @@ extension TodayViewModel {
         case errorNetwork(String)
     }
 }
+
