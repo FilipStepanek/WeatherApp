@@ -30,7 +30,7 @@ struct ContentModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.contentInfo)
-            .foregroundColor(.contentRegular)
+            .foregroundColor(.mainText)
     }
 }
 

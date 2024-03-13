@@ -35,9 +35,6 @@
         }
       }
     },
-    "%@°C" : {
-
-    },
     "%@hPa" : {
       "extractionState" : "stale",
       "localizations" : {

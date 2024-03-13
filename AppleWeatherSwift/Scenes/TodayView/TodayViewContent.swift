@@ -118,9 +118,9 @@ struct TodayViewContent: View {
                 .modifier(TemperatureModifier())
                 .padding(.vertical, 4)
             
-            Text(weather.name + ", " + (countryName(countryCode: weather.sys.country) ?? "Unknown"))
-                .modifier(ContentModifier())
-                .padding(.vertical, 8)
+            Text((weather.name ) + ", " + (String().countryName(countryCode: weather.sys.country ) ?? "Unknown"))
+                        .modifier(ContentModifier())
+                        .padding(.vertical, 8)
         }
     }
     

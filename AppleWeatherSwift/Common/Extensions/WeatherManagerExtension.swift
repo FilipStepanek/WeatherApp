@@ -10,7 +10,7 @@ import SwiftUI
 
 class WeatherManagerExtension {
     
-    // MARK: - Geting image name for forecast icon
+    // MARK: - Getting image name for forecast icon
     func getImageNameForWeatherIcon(icon: String) -> String {
         switch icon {
         case "01d":
