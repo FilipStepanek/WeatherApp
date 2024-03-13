@@ -45,7 +45,7 @@ extension Font {
     static let buttons = (custom(Self.interSemibold, size: Self.FontSize.contentRegular.rawValue))
     
     // Temperature
-    static let temperatureInformation = (custom(Self.interSemibold, size: Self.FontSize.headLine3.rawValue))
+    static let temperatureInformation = (custom(Self.interSemibold, size: Self.FontSize.dayInfoFont.rawValue))
     
     // Content Info
     static let contentInfo = (custom(Self.interRegular, size: Self.FontSize.contentRegular.rawValue))
