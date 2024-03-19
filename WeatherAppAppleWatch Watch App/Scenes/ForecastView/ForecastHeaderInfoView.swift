@@ -14,7 +14,7 @@ struct ForecastHeaderInfoView: View {
     var body: some View {
         HStack() {
             Text(dayHeaderText())
-                .foregroundStyle(.mainTextWatch)
+                .foregroundStyle(.mainText)
                 .font(.contentSmall)
             
             Spacer()
@@ -51,4 +51,3 @@ struct ForecastHeaderInfoView: View {
 #Preview {
     ForecastHeaderInfoView(dayIndex: 0)
 }
-

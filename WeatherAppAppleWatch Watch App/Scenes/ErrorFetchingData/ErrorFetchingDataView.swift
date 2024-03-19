@@ -35,7 +35,6 @@ struct ErrorFetchingDataView: View {
                         Spacer()
                         
                         Button(action: {
-                            print("Button pressed Reload")
                             
                             Task {
                                 await viewModelForecast.initialLoad()
@@ -43,7 +42,7 @@ struct ErrorFetchingDataView: View {
                         }) {
                             Image.systemReload
                                 .cornerRadius(40)
-                                .accentColor(.tabBar)
+                                .accentColor(.reloadBackground)
                             
                         }
                         .buttonStyle(ReloadButton())

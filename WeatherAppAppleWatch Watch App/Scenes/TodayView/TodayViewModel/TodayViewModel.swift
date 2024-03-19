@@ -77,7 +77,7 @@ extension TodayViewModel {
     enum State {
         case loading
         case missingLocation
-        case succes(CurrentResponse)
+        case succes(ResponseData.CurrentResponse)
         case error(String)
         case errorNetwork(String)
     }

@@ -11,13 +11,13 @@ struct ForecastViewContent: View {
     
     @StateObject private var viewModel = ForecastViewModel()
     
-    var weather: ForecastResponse
-    var weatherNow: CurrentResponse
+    let weather: ResponseData.ForecastResponse
+    let weatherNow: ResponseData.CurrentResponse
     let headerText = String(localized: "forecast.header.title")
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     
-    var groupedData: [String: [ForecastResponse.ListResponse]] {
-        var groupedData: [String: [ForecastResponse.ListResponse]] = [:]
+    var groupedData: [String: [ResponseData.ForecastResponse.ListResponse]] {
+        var groupedData: [String: [ResponseData.ForecastResponse.ListResponse]] = [:]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         

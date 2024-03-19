@@ -28,6 +28,8 @@ struct TodayView: View {
                 }
             }
         }
+        
+        //onLoad custom code
         .task {
             viewModelToday.initialLoad()
         }
@@ -39,4 +41,3 @@ struct TodayView_Previews: PreviewProvider {
         TodayView()
     }
 }
-

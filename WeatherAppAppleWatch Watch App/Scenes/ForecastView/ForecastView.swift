@@ -40,4 +40,3 @@ struct ForecastView_Previews: PreviewProvider {
         ForecastView()
     }
 }
-

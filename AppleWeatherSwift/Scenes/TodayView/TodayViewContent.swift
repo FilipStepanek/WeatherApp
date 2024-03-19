@@ -6,16 +6,14 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct TodayViewContent: View {
     
     @StateObject private var viewModel = TodayViewModel()
     var weatherManager = WeatherManager()
     var weatherManagerExtension = WeatherManagerExtension()
-    
-    @State var isPresented: Bool = false
-    
-    var weather: CurrentResponse
+    let weather: ResponseData.CurrentResponse
     
     var body: some View {
         VStack {
@@ -43,7 +41,7 @@ struct TodayViewContent: View {
                             
                             todayInformation
                         }
-                
+                        
                         VStack (
                             alignment: .leading,
                             spacing: 15
@@ -68,16 +66,15 @@ struct TodayViewContent: View {
             TodayAnimationBackgroundView(weather: weather)
         )
         .sheet(isPresented: $viewModel.isShareSheetPresented) {
-            ShareSheetView(activityItems: [ URL(string: "https://openweathermap.org")!])
+            ShareSheetView(activityItems: [ URL(string: Constants.openWeatherMapURL)])
                 .presentationDetents([.medium, .large])
-            
         }
     }
     @ViewBuilder
     var shareButton: some View {
         
         Button(action: {
-            print("Button pressed Share")
+            Logger.viewCycle.info("Button pressed Share")
             viewModel.isShareSheetPresented = true
         }) {
             Text("share.button.title")
@@ -104,11 +101,12 @@ struct TodayViewContent: View {
     @ViewBuilder
     var todayInformation: some View {
         
-        let temperature = Int(weather.main.temp.rounded())
+//        let temperatureWithUnits = "\(temperatureLogic.temperatureUnitSymbol())"
+        
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         VStack (alignment: .leading, spacing: -4) {
-            Image(weatherManagerExtension.getImageNameForWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+            Image(weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
                 .resizable()
                 .scaledToFit()
                 .aspectRatio(contentMode: .fit)
@@ -119,21 +117,19 @@ struct TodayViewContent: View {
                 .padding(.vertical, 4)
             
             Text((weather.name ) + ", " + (String().countryName(countryCode: weather.sys.country ) ?? "Unknown"))
-                        .modifier(ContentModifier())
-                        .padding(.vertical, 8)
+                .modifier(ContentModifier())
+                .padding(.vertical, 8)
         }
     }
     
-    func temperatureUnitSymbol() -> String {
-        let measurementFormatter = MeasurementFormatter()
-        measurementFormatter.numberFormatter.maximumFractionDigits = 0
-        
-        let temperature = Measurement(value: weather.main.temp, unit: UnitTemperature.celsius)
-        return measurementFormatter.string(from: temperature)
-    }
+        func temperatureUnitSymbol() -> String {
+            let measurementFormatter = MeasurementFormatter()
+            measurementFormatter.numberFormatter.maximumFractionDigits = 0
+    
+            let temperature = Measurement(value: weather.main.temp, unit: UnitTemperature.celsius)
+            return measurementFormatter.string(from: temperature)
+        }
 }
-
-
 
 struct TodayViewContent_Previews: PreviewProvider {
     static var previews: some View {

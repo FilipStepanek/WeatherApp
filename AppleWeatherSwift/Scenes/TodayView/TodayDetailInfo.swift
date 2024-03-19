@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodayDetailInfo: View {
     
-    var weather: CurrentResponse
+    let weather: ResponseData.CurrentResponse
     
     var body: some View {
         
@@ -124,6 +124,3 @@ struct TodayDetailInfo: View {
 #Preview {
     TodayDetailInfo(weather: previewWeather)
 }
-
-
-

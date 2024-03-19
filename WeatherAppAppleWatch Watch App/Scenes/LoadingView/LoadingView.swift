@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ProgressView()
-            .progressViewStyle(CircularProgressViewStyle (tint: .mainTextWatch))
+            .progressViewStyle(CircularProgressViewStyle (tint: .mainText))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct ErrorInternetConnectionView: View {
     let onRefreshTap: () -> Void
     
-    
     var body: some View {
         
         VStack (
@@ -57,6 +56,3 @@ struct ErrorInternetConnectionView: View {
         
     }
 }
-
-
-

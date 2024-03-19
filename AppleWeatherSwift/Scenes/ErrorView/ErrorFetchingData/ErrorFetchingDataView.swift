@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct ErrorFetchingDataView: View {
     
@@ -21,7 +22,7 @@ struct ErrorFetchingDataView: View {
                 Spacer()
                 
                 Button(action: {
-                    print("Button pressed Reload")
+                    Logger.viewCycle.info("Button pressed Reload")
                     
                     Task {
                         await viewModelForecast.initialLoad()
@@ -61,5 +62,3 @@ struct ErrorFetchingDataView: View {
 #Preview {
     ErrorFetchingDataView()
 }
-
-

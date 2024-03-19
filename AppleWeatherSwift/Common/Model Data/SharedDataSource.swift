@@ -46,6 +46,7 @@
 //}
 
 import Foundation
+import OSLog
 
 class SharedDataSource {
     static let shared = SharedDataSource()
@@ -57,15 +58,17 @@ class SharedDataSource {
         sharedContainer = UserDefaults(suiteName: sharedSuiteName)!
     }
 
-    func saveCurrentResponse(_ response: CurrentResponse) {
+    func saveCurrentResponse(_ response: ResponseData.CurrentResponse) {
         if let encodedData = try? JSONEncoder().encode(response) {
             sharedContainer.set(encodedData, forKey: "currentResponse")
+            Logger.viewCycle.info("Data saved for widget")
         }
     }
 
-    func getCurrentResponse() -> CurrentResponse? {
+    func getCurrentResponse() -> ResponseData.CurrentResponse? {
         if let data = sharedContainer.data(forKey: "currentResponse"),
-            let decodedResponse = try? JSONDecoder().decode(CurrentResponse.self, from: data) {
+           let decodedResponse = try? JSONDecoder().decode(ResponseData.CurrentResponse.self, from: data) {
+            Logger.viewCycle.info("Data ready for widget")
             return decodedResponse
         }
         return nil

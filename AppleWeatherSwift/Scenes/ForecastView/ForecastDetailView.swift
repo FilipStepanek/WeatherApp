@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ForecastDetailView: View {
     
-    var weather: ForecastResponse.ListResponse
-    
+    let weather: ResponseData.ForecastResponse.ListResponse
     
     var body: some View {
         
-        let temperature = Int(weather.main.temp.rounded())
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         HStack(
@@ -27,7 +25,7 @@ struct ForecastDetailView: View {
                     .frame(maxWidth: 48, maxHeight: 48)
                     .cornerRadius(48)
                     .foregroundColor(.iconBase)
-                Image(WeatherManagerExtension().getImageNameForForecastIcon(icon: weather.weather.first?.icon ?? ""))
+                Image(WeatherManagerExtension().getImageNameFromForecastIcon(icon: weather.weather.first?.icon ?? ""))
                     .imageSize()
                 
             }
@@ -37,8 +35,6 @@ struct ForecastDetailView: View {
                 alignment: .leading
                 
             ) {
-                
-                
                 Text(Date.formatUnixTimestampInGMT(weather.date))
                     .modifier(ContentMediumModifier())
                 

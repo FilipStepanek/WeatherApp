@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import OSLog
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
@@ -46,16 +47,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             // Handle authorized status
-            print("Location authorization granted")
+            Logger.viewCycle.info("Location authorization granted")
             self.status = .locationGranted
             requestLocation()
         case .denied, .restricted:
             // Handle denied or restricted status
-            print("Location authorization denied or restricted")
+            Logger.viewCycle.info("Location authorization denied or restricted")
             self.status = .denied
         case .notDetermined:
             // Handle not determined status
-            print("Location authorization not determined")
+            Logger.viewCycle.info("Location authorization not determined")
             self.status = .unknown
             requestLocation()
             
@@ -66,9 +67,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let clError = error as? CLError {
-            print("Location Manager Error: \(clError.errorCode) - \(clError.localizedDescription)")
+            Logger.viewCycle.error("Location Manager Error: \(clError.errorCode) - \(clError.localizedDescription)")
         } else {
-            print("Generic Location Manager Error: \(error.localizedDescription)")
+            Logger.viewCycle.error("Generic Location Manager Error: \(error.localizedDescription)")
         }
         isLoading = false
     }

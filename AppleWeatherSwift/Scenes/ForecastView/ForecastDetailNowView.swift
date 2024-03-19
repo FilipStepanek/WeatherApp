@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ForecastDetailNowView: View {
     
-    var weatherNow: CurrentResponse
-    
+    let weatherNow: ResponseData.CurrentResponse
     
     var body: some View {
         
-        let temperature = Int(weatherNow.main.temp.rounded())
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         HStack(
@@ -27,7 +25,7 @@ struct ForecastDetailNowView: View {
                     .frame(maxWidth: 48, maxHeight: 48)
                     .cornerRadius(48)
                     .foregroundColor(.iconBase)
-                Image(WeatherManagerExtension().getImageNameForForecastIcon(icon: weatherNow.weather.first?.icon ?? ""))
+                Image(WeatherManagerExtension().getImageNameFromForecastIcon(icon: weatherNow.weather.first?.icon ?? ""))
                     .imageSize()
                 
             }
@@ -37,8 +35,6 @@ struct ForecastDetailNowView: View {
                 alignment: .leading
                 
             ) {
-                
-                
                 Text("Now")
                     .modifier(ContentMediumModifier())
                 
@@ -58,6 +54,7 @@ struct ForecastDetailNowView: View {
         .background(.row)
         .cornerRadius(16)
     }
+    
     func temperatureUnitSymbol() -> String {
         let measurementFormatter = MeasurementFormatter()
         measurementFormatter.numberFormatter.maximumFractionDigits = 0
@@ -72,4 +69,3 @@ struct ForecastDetailNowView_Previews: PreviewProvider {
         ForecastDetailNowView(weatherNow: previewWeather)
     }
 }
-

@@ -14,6 +14,7 @@ final class TodayViewModel: ObservableObject {
     @Published var shouldReloaded = false
     @Published private(set) var state: State = .loading
     @Published var isConnected = true
+    @Published var isPresented: Bool = false
     
     private(set) var locationManager = LocationManager()
     private var weatherManager = WeatherManager()
@@ -73,15 +74,13 @@ final class TodayViewModel: ObservableObject {
     }
 }
 
-
 // MARK: - State
 extension TodayViewModel {
     enum State {
         case loading
         case missingLocation
-        case succes(CurrentResponse)
+        case succes(ResponseData.CurrentResponse)
         case error(String)
         case errorNetwork(String)
     }
 }
-

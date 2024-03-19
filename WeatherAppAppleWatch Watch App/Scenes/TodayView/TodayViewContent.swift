@@ -11,7 +11,7 @@ struct TodayViewContent: View {
     
     var weatherManager = WeatherManager()
     var weatherManagerExtension = WeatherManagerExtension()
-    var weather: CurrentResponse
+    let weather: ResponseData.CurrentResponse
     @State private var isShowingForecast = false
     
     var body: some View {
@@ -76,14 +76,13 @@ struct TodayViewContent: View {
     @ViewBuilder
     var todayInformation: some View {
         
-        let temperature = Int(weather.main.temp.rounded())
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         Text((weather.name ) + ", " + (String().countryName(countryCode: weather.sys.country ) ?? "Unknown"))
                     .modifier(ContentModifier())
                     .padding(.vertical, 8)
         
-        Image(weatherManagerExtension.getImageNameForWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+        Image(weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
             .resizable()
             .scaledToFit()
             .aspectRatio(contentMode: .fit)

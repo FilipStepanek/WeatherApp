@@ -74,4 +74,3 @@ private struct UIKitActivityView: UIViewControllerRepresentable {
         uiViewController.present(activityViewController, animated: true)
     }
 }
-

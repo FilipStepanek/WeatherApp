@@ -28,10 +28,10 @@ struct EnableLocationView: View {
                     
                     Text("enable.Location.Title")
                         .modifier(TitleModifier())
-                        .foregroundColor(.mainTextWatch)
+                        .foregroundColor(.mainText)
                     
                     Text("permission.Message")
-                        .foregroundColor(.mainTextWatch)
+                        .foregroundColor(.mainText)
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
                     
@@ -64,6 +64,3 @@ struct EnableLocationView: View {
 #Preview {
     EnableLocationView(locationManager: LocationManager())
 }
-
-
-

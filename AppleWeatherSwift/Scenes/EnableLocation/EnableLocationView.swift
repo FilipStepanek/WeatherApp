@@ -44,12 +44,9 @@ struct EnableLocationView: View {
             
         }
         .padding(.top, 100)
-        
     }
 }
 
 #Preview {
     EnableLocationView(locationManager: LocationManager())
 }
-
-

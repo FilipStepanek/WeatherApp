@@ -28,7 +28,7 @@ struct TitleModifier: ViewModifier {
         content
             .multilineTextAlignment(.leading)
             .font(.headLineOne)
-            .foregroundColor(.mainTextWatch)
+            .foregroundColor(.mainText)
     }
 }
 
@@ -36,7 +36,7 @@ struct ContentMediumModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.contentMedium)
-            .foregroundColor(.mainTextWatch)
+            .foregroundColor(.mainText)
     }
 }
 
@@ -44,7 +44,7 @@ struct ContentMediumModifierEnable: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.buttons)
-            .foregroundColor(.enableLocationButtonTextWatch)
+            .foregroundColor(.enableLocationButtonText)
     }
 }
 
@@ -52,7 +52,7 @@ struct TemperatureModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.temperatureInformation)
-            .foregroundColor(.mainTextWatch)
+            .foregroundColor(.mainText)
     }
 }
 
@@ -60,7 +60,7 @@ struct ContentSmallModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.contentInfoSmall)
-            .foregroundColor(.mainTextWatch)
+            .foregroundColor(.mainText)
     }
 }
 
@@ -68,7 +68,7 @@ struct HeadlineThreeModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.mediumTitleWatch)
-            .foregroundColor(.mainTextWatch)
+            .foregroundColor(.mainText)
     }
 }
 

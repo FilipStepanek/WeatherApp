@@ -39,4 +39,3 @@ struct TodayView_Previews: PreviewProvider {
         TodayView()
     }
 }
-

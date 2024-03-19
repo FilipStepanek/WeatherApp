@@ -77,7 +77,7 @@ extension ForecastViewModel {
     enum State {
         case loading
         case missingLocation
-        case success(ForecastResponse, CurrentResponse)
+        case success(ResponseData.ForecastResponse, ResponseData.CurrentResponse)
         case error(String)
         case errorNetwork(String)
     }

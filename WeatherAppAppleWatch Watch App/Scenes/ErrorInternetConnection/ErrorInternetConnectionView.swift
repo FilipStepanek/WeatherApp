@@ -10,7 +10,6 @@ import SwiftUI
 struct ErrorInternetConnectionView: View {
     let onRefreshTap: () -> Void
     
-    
     var body: some View {
         ScrollView{
             
@@ -18,7 +17,6 @@ struct ErrorInternetConnectionView: View {
                 alignment: .leading,
                 spacing: 20
             ){
-                
                 Image.systemNetworkError
                     .resizable()
                     .scaledToFit()
@@ -34,9 +32,10 @@ struct ErrorInternetConnectionView: View {
                     Spacer()
                     
                     Button(action: onRefreshTap) {
+                        
                         Image.systemReload
                             .cornerRadius(40)
-                            .accentColor(.tabBar)
+                            .accentColor(.reloadBackground)
                         
                     }
                     .buttonStyle(ReloadButton())
@@ -55,7 +54,6 @@ struct ErrorInternetConnectionView: View {
 
 #Preview {
     ErrorInternetConnectionView() {
-        
     }
 }
 

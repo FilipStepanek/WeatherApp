@@ -10,8 +10,6 @@ import CoreLocationUI
 
 struct ContentView: View {
     
-    var weatherManager = WeatherManager()
-    
     var body: some View {
         TabView {
             TodayView()
@@ -41,4 +39,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
