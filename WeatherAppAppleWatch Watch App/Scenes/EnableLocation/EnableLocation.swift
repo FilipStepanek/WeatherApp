@@ -61,6 +61,8 @@ struct EnableLocationView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     EnableLocationView(locationManager: LocationManager())
 }
+#endif

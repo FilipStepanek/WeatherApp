@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import Factory
 
 @main
+@MainActor
 struct AppleWeatherSwiftApp: App {
     var body: some Scene {
         WindowGroup {
@@ -16,4 +18,10 @@ struct AppleWeatherSwiftApp: App {
     }
 }
 
-
+extension Container {
+    var weatherManager: Factory<WeatherManaging> {
+        Factory(self) {
+            WeatherManager()
+        }
+    }
+}

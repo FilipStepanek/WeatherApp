@@ -7,14 +7,17 @@
 
 import Combine
 import CoreLocation
+import Factory
 
 @MainActor
 final class ForecastViewModel: ObservableObject {
     @Published var shouldReloaded = false
     @Published private(set) var state: State = .loading
     
+    //MARK: - Injected weatherManager via Factory package manager - Dependency Injection 
+    @Injected(\.weatherManager) private var weatherManager
+    
     private(set) var locationManager = LocationManager()
-    private var weatherManager = WeatherManager()
     private var cancellables = Set<AnyCancellable>()
     private var loadingTask: Task<Void, Never>?
     
@@ -77,7 +80,7 @@ extension ForecastViewModel {
     enum State {
         case loading
         case missingLocation
-        case success(ResponseData.ForecastResponse, ResponseData.CurrentResponse)
+        case success(ForecastResponse, CurrentResponse)
         case error(String)
         case errorNetwork(String)
     }

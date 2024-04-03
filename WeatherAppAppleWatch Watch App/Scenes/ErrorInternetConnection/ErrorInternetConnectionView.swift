@@ -52,8 +52,10 @@ struct ErrorInternetConnectionView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ErrorInternetConnectionView() {
     }
 }
+#endif
 

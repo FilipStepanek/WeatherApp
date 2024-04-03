@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForecastDetailNowView: View {
     
-    let weatherNow: ResponseData.CurrentResponse
+    let weatherNow: CurrentResponse
     
     var body: some View {
         
@@ -65,8 +65,8 @@ struct ForecastDetailNowView: View {
     }
 }
 
-struct ForecastDetailNowView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastDetailNowView(weatherNow: previewWeather)
-    }
+#if DEBUG
+#Preview {
+    ForecastDetailNowView(weatherNow: .previewMock)
 }
+#endif

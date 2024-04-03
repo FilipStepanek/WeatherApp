@@ -60,6 +60,8 @@ struct ErrorFetchingDataView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ErrorFetchingDataView()
 }
+#endif

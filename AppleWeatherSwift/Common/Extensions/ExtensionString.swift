@@ -16,3 +16,11 @@ extension String {
         return countryName
     }
 }
+
+// ?????
+extension Locale {
+    func countryName(countryCode: String) -> String? {
+        localizedString(forRegionCode: countryCode)
+    }
+}
+

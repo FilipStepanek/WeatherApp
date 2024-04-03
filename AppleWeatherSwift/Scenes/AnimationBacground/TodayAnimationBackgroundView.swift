@@ -9,14 +9,14 @@ import SwiftUI
 
 struct TodayAnimationBackgroundView: View {
     let endRadiusSize = 450
-    let weather: ResponseData.CurrentResponse
+    let weather: CurrentResponse
     
     @State var xpos: CGFloat
     @State var ypos: CGFloat = 0
     @State private var scale: CGFloat = 1.0
     @State private var pulsate: Bool = false
     
-    init(weather: ResponseData.CurrentResponse) {
+    init(weather: CurrentResponse) {
         self.weather = weather
         self.xpos = -UIScreen.main.bounds.width + CGFloat(endRadiusSize)
     }
@@ -49,6 +49,8 @@ struct TodayAnimationBackgroundView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    TodayAnimationBackgroundView(weather: previewWeather)
+    TodayAnimationBackgroundView(weather: .previewMock)
 }
+#endif

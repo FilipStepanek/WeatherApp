@@ -7,6 +7,7 @@
 
 import Combine
 import CoreLocation
+import Factory
 
 @MainActor
 final class TodayViewModel: ObservableObject {
@@ -16,8 +17,11 @@ final class TodayViewModel: ObservableObject {
     @Published var isConnected = true
     @Published var isPresented: Bool = false
     
+    //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
+    @Injected(\.weatherManager) private var weatherManager
+
+    var weatherManagerExtension = WeatherManagerExtension()
     private(set) var locationManager = LocationManager()
-    private var weatherManager = WeatherManager()
     private var cancellables = Set<AnyCancellable>()
     private var loadingTask: Task<Void, Never>?
     
@@ -79,7 +83,7 @@ extension TodayViewModel {
     enum State {
         case loading
         case missingLocation
-        case succes(ResponseData.CurrentResponse)
+        case succes(CurrentResponse)
         case error(String)
         case errorNetwork(String)
     }

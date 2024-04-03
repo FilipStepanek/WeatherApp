@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TodayViewContent: View {
     
-    var weatherManager = WeatherManager()
-    var weatherManagerExtension = WeatherManagerExtension()
-    let weather: ResponseData.CurrentResponse
+    @StateObject private var viewModel = TodayViewModel()
+    let weather: CurrentResponse
+    
     @State private var isShowingForecast = false
     
     var body: some View {
@@ -82,7 +82,7 @@ struct TodayViewContent: View {
                     .modifier(ContentModifier())
                     .padding(.vertical, 8)
         
-        Image(weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+        Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
             .resizable()
             .scaledToFit()
             .aspectRatio(contentMode: .fit)
@@ -104,7 +104,9 @@ struct TodayViewContent: View {
         return measurementFormatter.string(from: temperature)
     }
 }
-#Preview {
-    TodayViewContent(weather: previewWeather)
-}
 
+#if DEBUG
+#Preview {
+    TodayViewContent(weather: .previewMock)
+}
+#endif

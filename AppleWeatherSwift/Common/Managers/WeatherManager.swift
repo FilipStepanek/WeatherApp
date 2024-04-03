@@ -10,7 +10,12 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-class WeatherManager {
+protocol WeatherManaging {
+    func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> CurrentResponse
+    func getForecastWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> ForecastResponse
+}
+
+class WeatherManager: WeatherManaging {
     
     private let networkManager = NetworkManager()
     
@@ -19,19 +24,22 @@ class WeatherManager {
     }
     
     // MARK: - API CALLING Current Weather
-    func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> ResponseData.CurrentResponse {
-        guard let url = URL(string: "\(Constants.baseURL)weather?lat=\(latitude)&lon=\(longitude)&appid=\(Constants.apiKey)&units=metric") else { fatalError("Missing URL") }
+    func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> CurrentResponse {
         
+        // try awit -> provolavnani API client or nertwork service 
+        guard let url = URL(string: "\(Constants.baseURL)weather?lat=\(latitude)&lon=\(longitude)&appid=\(Constants.apiKey)&units=metric") else { fatalError("Missing URL") }
+        // url zde nevytvaret -> vytvorit API client
         let urlRequest = URLRequest(url: url)
         
         do {
+            // zanechat
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
             guard (response as? HTTPURLResponse)?.statusCode == 200 else {
                 throw GHError.invalidResponse
             }
             
-            let decodedData = try JSONDecoder().decode(ResponseData.CurrentResponse.self, from: data)
+            let decodedData = try JSONDecoder().decode(CurrentResponse.self, from: data)
             
             SharedDataSource.shared.saveCurrentResponse(decodedData)
             
@@ -47,7 +55,7 @@ class WeatherManager {
     }
     
     // MARK: - API CALLING Forecast
-    func getForecastWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> ResponseData.ForecastResponse {
+    func getForecastWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> ForecastResponse {
         guard let url = URL(string: "\(Constants.baseURL)forecast?lat=\(latitude)&lon=\(longitude)&appid=\(Constants.apiKey)&units=metric") else { fatalError("Missing URL") }
         
         let urlRequest = URLRequest(url: url)
@@ -63,7 +71,7 @@ class WeatherManager {
             
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            let decodedData = try decoder.decode(ResponseData.ForecastResponse.self, from: data)
+            let decodedData = try decoder.decode(ForecastResponse.self, from: data)
                         
             return decodedData
             

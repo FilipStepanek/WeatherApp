@@ -47,16 +47,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             // Handle authorized status
-            Logger.viewCycle.info("Location authorization granted")
+            Logger.networking.info("Location authorization granted")
             self.status = .locationGranted
             requestLocation()
         case .denied, .restricted:
             // Handle denied or restricted status
-            Logger.viewCycle.info("Location authorization denied or restricted")
+            Logger.networking.info("Location authorization denied or restricted")
             self.status = .denied
         case .notDetermined:
             // Handle not determined status
-            Logger.viewCycle.info("Location authorization not determined")
+            Logger.networking.info("Location authorization not determined")
             self.status = .unknown
             requestLocation()
             
@@ -67,9 +67,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let clError = error as? CLError {
-            Logger.viewCycle.error("Location Manager Error: \(clError.errorCode) - \(clError.localizedDescription)")
+            Logger.networking.info("Location Manager Error: \(clError.errorCode) - \(clError.localizedDescription)")
         } else {
-            Logger.viewCycle.error("Generic Location Manager Error: \(error.localizedDescription)")
+            Logger.networking.info("Generic Location Manager Error: \(error.localizedDescription)")
         }
         isLoading = false
     }

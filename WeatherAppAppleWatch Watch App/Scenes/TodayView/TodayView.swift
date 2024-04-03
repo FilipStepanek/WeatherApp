@@ -19,7 +19,7 @@ struct TodayView: View {
             case .missingLocation:
                 EnableLocationView(locationManager: viewModelToday.locationManager)
             case .succes(let currentResponse):
-                TodayViewContent(weatherManager: WeatherManager(), weather: currentResponse)
+                TodayViewContent(weather: currentResponse)
             case .error:
                 ErrorFetchingDataView()
             case .errorNetwork:
@@ -28,14 +28,14 @@ struct TodayView: View {
                 }
             }
         }
-        .task {
+        .onLoad {
             viewModelToday.initialLoad()
         }
     }
 }
 
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
-    }
+#if DEBUG
+#Preview {
+    TodayView()
 }
+#endif

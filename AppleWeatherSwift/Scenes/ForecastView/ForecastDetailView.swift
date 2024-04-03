@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForecastDetailView: View {
     
-    let weather: ResponseData.ForecastResponse.ListResponse
+    let weather: ForecastResponse.ListResponse
     
     var body: some View {
         
@@ -62,8 +62,11 @@ struct ForecastDetailView: View {
     }
 }
 
-struct ForecastDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastDetailView(weather: previewForecast.list.first ?? .init(date: 1702749600, main: .init(temp: 0), weather: []))
+#if DEBUG
+#Preview {
+        let mockListResponse = ForecastResponse.ListResponse(date: 1702749600, main: ForecastResponse.MainResponseForecast(temp: 0), weather: [])
+        let mockForecastResponse = ForecastResponse(city: ForecastResponse.CoordinatesResp(coord: ForecastResponse.Coordinates(lon: 0, lat: 0)), list: [mockListResponse])
+        
+        return ForecastDetailView(weather: mockForecastResponse.list.first ?? mockListResponse)
     }
-}
+#endif

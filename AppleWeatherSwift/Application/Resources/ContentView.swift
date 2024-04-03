@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            TodayView()
+            TodayView(viewModelToday: .init())
                 .tabItem {
                     Image(.tabBarToday)
                     Text("today.Tabbar.Title")

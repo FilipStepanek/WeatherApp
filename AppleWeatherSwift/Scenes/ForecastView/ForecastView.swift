@@ -29,14 +29,14 @@ struct ForecastView: View {
                 }
             }
         }
-        .task {
+        .onLoad {
             viewModelForecast.initialLoad()
         }
     }
 }
 
-struct ForecastView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastView()
-    }
+#if DEBUG
+#Preview {
+    ForecastView()
 }
+#endif

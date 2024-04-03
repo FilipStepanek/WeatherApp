@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ForecastViewContent: View {
-    let weather: ResponseData.ForecastResponse
-    let weatherNow: ResponseData.CurrentResponse
+    let weather: ForecastResponse
+    let weatherNow: CurrentResponse
     let headerText = String(localized: "forecast.header.title")
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     
-    var groupedData: [String: [ResponseData.ForecastResponse.ListResponse]] {
-        var groupedData: [String: [ResponseData.ForecastResponse.ListResponse]] = [:]
+    var groupedData: [String: [ForecastResponse.ListResponse]] {
+        var groupedData: [String: [ForecastResponse.ListResponse]] = [:]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
@@ -62,8 +62,11 @@ struct ForecastViewContent: View {
     }
 }
 
-struct ForecastViewContent_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastViewContent(weather: previewForecast, weatherNow: previewWeather)
-    }
+#if DEBUG
+#Preview {
+    ForecastViewContent(
+        weather: .previewMock,
+        weatherNow: .previewMock
+    )
 }
+#endif

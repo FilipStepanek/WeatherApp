@@ -10,10 +10,8 @@ import OSLog
 
 struct TodayViewContent: View {
     
-    @StateObject private var viewModel = TodayViewModel()
-    var weatherManager = WeatherManager()
-    var weatherManagerExtension = WeatherManagerExtension()
-    let weather: ResponseData.CurrentResponse
+        @StateObject private var viewModel = TodayViewModel()
+        let weather: CurrentResponse
     
     var body: some View {
         VStack {
@@ -101,12 +99,10 @@ struct TodayViewContent: View {
     @ViewBuilder
     var todayInformation: some View {
         
-//        let temperatureWithUnits = "\(temperatureLogic.temperatureUnitSymbol())"
-        
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         VStack (alignment: .leading, spacing: -4) {
-            Image(weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+            Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
                 .resizable()
                 .scaledToFit()
                 .aspectRatio(contentMode: .fit)
@@ -122,17 +118,17 @@ struct TodayViewContent: View {
         }
     }
     
-        func temperatureUnitSymbol() -> String {
-            let measurementFormatter = MeasurementFormatter()
-            measurementFormatter.numberFormatter.maximumFractionDigits = 0
-    
-            let temperature = Measurement(value: weather.main.temp, unit: UnitTemperature.celsius)
-            return measurementFormatter.string(from: temperature)
-        }
-}
-
-struct TodayViewContent_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayViewContent(weather: previewWeather)
+    func temperatureUnitSymbol() -> String {
+        let measurementFormatter = MeasurementFormatter()
+        measurementFormatter.numberFormatter.maximumFractionDigits = 0
+        
+        let temperature = Measurement(value: weather.main.temp, unit: UnitTemperature.celsius)
+        return measurementFormatter.string(from: temperature)
     }
 }
+
+#if DEBUG
+#Preview {
+    TodayViewContent(weather: .previewMock)
+}
+#endif

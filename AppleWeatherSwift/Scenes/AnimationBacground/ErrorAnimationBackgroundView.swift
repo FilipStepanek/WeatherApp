@@ -52,6 +52,8 @@ struct ErrorAnimationBackgroundView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ErrorAnimationBackgroundView()
 }
+#endif

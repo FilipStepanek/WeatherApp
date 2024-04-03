@@ -51,8 +51,8 @@ struct ErrorInternetConnectionView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    ErrorInternetConnectionView() {
-        
-    }
+    ErrorInternetConnectionView(onRefreshTap: {})
 }
+#endif

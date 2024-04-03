@@ -8,9 +8,9 @@
 import Foundation
 
 class TemperatureLogic {
-    let weather: ResponseData.CurrentResponse
+    let weather: CurrentResponse
     
-    init(weather: ResponseData.CurrentResponse) {
+    init(weather: CurrentResponse) {
         self.weather = weather
     }
     

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TodayView: View {
-    
-    @StateObject private var viewModelToday = TodayViewModel()
+    // TODO: Make it private again, add init
+    @StateObject var viewModelToday: TodayViewModel
     
     var body: some View {
         ZStack {
@@ -19,7 +19,7 @@ struct TodayView: View {
             case .missingLocation:
                 EnableLocationView(locationManager: viewModelToday.locationManager)
             case .succes(let currentResponse):
-                TodayViewContent(weatherManager: WeatherManager(), weather: currentResponse)
+                TodayViewContent(weather: currentResponse)
             case .error:
                 ErrorFetchingDataView()
             case .errorNetwork:
@@ -28,16 +28,14 @@ struct TodayView: View {
                 }
             }
         }
-        
-        //onLoad custom code
-        .task {
+        .onLoad {
             viewModelToday.initialLoad()
         }
     }
 }
 
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
-    }
+#if DEBUG
+#Preview {
+    TodayView(viewModelToday: .init())
 }
+#endif
