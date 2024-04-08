@@ -115,7 +115,7 @@ struct ForecastResponse: Codable {
 #if DEBUG
 //MARK: - Extension for ModelData
 extension CurrentResponse {
-    static let previewMock: Self = load("weatherData.json")
+    static let previewMock: Self = load("weatherDataCurrentWeather.json")
 }
 
 extension ForecastResponse {

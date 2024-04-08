@@ -13,6 +13,6 @@ struct Constants {
     static let openWeatherMapURL = "https://openweathermap.org"
     
     //MARK: - API constants
-    static let baseURL = "https://api.openweathermap.org/data/2.5/"
+    static let baseURL = URL(string: "https://api.openweathermap.org/data/2.5/")!
     static let apiKey = "020e61171acbd0230c6f8fe970f138e7"
 }
