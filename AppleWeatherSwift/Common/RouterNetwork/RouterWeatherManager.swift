@@ -16,15 +16,15 @@ enum RouterWeatherManager {
 
 extension RouterWeatherManager: Router {
     var baseURL: URL {
-        Constants.baseURL.appendingPathComponent("1.1")
+        Constants.baseURL.appendingPathComponent("2.5")
     }
 
     var path: String {
         switch self {
         case .getCurrentWeather:
-            return "weather.json"
+            return "weather"
         case .getForecast:
-            return "forecast.json"
+            return "forecast"
         }
     }
 
@@ -56,10 +56,4 @@ extension RouterWeatherManager: Router {
     var isAuthorizationRequired: Bool {
         true
     }
-}
-
-enum GHError: Error {
-    case invalidResponse
-    case noInternetConnection
-    case defaultError
 }

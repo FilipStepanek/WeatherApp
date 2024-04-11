@@ -71,7 +71,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         } else {
             Logger.networking.info("Generic Location Manager Error: \(error.localizedDescription)")
         }
-        isLoading = false
+        isLoading = true
     }
     
     func stopLocationUpdates() {

@@ -65,7 +65,7 @@ final class TodayViewModel: ObservableObject {
                 let response = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
                 state = .succes(response)
             } catch {
-                if case GHError.noInternetConnection = error {
+                if case NetworkError.noInternetConnection = error {
                     return state = .errorNetwork(error.localizedDescription)
                 } else {
                     return state = .error(error.localizedDescription)

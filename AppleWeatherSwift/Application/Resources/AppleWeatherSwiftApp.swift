@@ -8,6 +8,7 @@
 import SwiftUI
 import Factory
 
+
 @main
 @MainActor
 struct AppleWeatherSwiftApp: App {

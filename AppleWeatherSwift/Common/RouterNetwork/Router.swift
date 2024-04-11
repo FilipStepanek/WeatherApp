@@ -9,34 +9,8 @@ import Foundation
 
 // Define HTTPStatusCode enum
 enum HTTPStatusCode: Int, Comparable {
-    // Informational
-    case `continue` = 100
-    case switchingProtocols = 101
-    case processing = 102
-    
-    // Success
     case ok = 200
-    case created = 201
-    case accepted = 202
-    // Add more success codes as needed
-    
-    // Redirection
-    case multipleChoices = 300
-    case movedPermanently = 301
-    case found = 302
-    // Add more redirection codes as needed
-    
-    // Client Error
-    case badRequest = 400
-    case unauthorized = 401
-    case forbidden = 403
-    // Add more client error codes as needed
-    
-    // Server Error
-    case internalServerError = 500
-    case notImplemented = 501
-    case badGateway = 502
-    // Add more server error codes as needed
+    // Here I can add more status codes. Now I need only one satus code.
     
     static func < (lhs: HTTPStatusCode, rhs: HTTPStatusCode) -> Bool {
         return lhs.rawValue < rhs.rawValue
@@ -46,12 +20,12 @@ enum HTTPStatusCode: Int, Comparable {
 // Define HTTPMethod enum
 enum HTTPMethod: String {
     case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
+    case post = "POST"  //Info: Not used
+    case put = "PUT"    //Info: Not used
+    case delete = "DELETE"  //Info: Not used
     // Add more HTTP methods as needed
 }
-
+// TODO: WHY? Is it necessary?
 // Define HTTPHeader enum
 enum HTTPHeader {
     enum ContentType: String {
@@ -83,7 +57,7 @@ extension Router {
         let urlPath = baseURL.appendingPathComponent(path)
 
         guard var urlComponents = URLComponents(url: urlPath, resolvingAgainstBaseURL: true) else {
-            throw APIError.parseUrlFail
+            throw NetworkError.parseUrlFail
         }
 
         if let urlParameters = urlParameters {
@@ -93,7 +67,7 @@ extension Router {
         }
 
         guard let url = urlComponents.url else {
-            throw APIError.parseUrlFail
+            throw NetworkError.parseUrlFail
         }
 
         var request = URLRequest(url: url)

@@ -66,7 +66,7 @@ final class ForecastViewModel: ObservableObject {
                 state = .success(forecastResponse, currentResponse)
 
             } catch {
-                if case GHError.noInternetConnection = error {
+                if case NetworkError.noInternetConnection = error {
                     return state = .errorNetwork(error.localizedDescription)
                 } else {
                     return state = .error(error.localizedDescription)

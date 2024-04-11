@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import OSLog
 
-enum APIError: LocalizedError {
+enum NetworkError: LocalizedError {
     case parseUrlFail
     case notFound
     case validationError
+    // TODO: add server error
     case serverError
     case defaultError
+    case noInternetConnection
+    case invalidResponse
     
-    var errorDescription: String? {
+    var errorDescription: String {
         switch self {
         case .parseUrlFail:
             return "Cannot initial URL object."
@@ -26,6 +30,10 @@ enum APIError: LocalizedError {
             return "Internal Server Error"
         case .defaultError:
             return "Something went wrong."
+        case .noInternetConnection:
+            return "No internet connection."
+        case .invalidResponse:
+            return "Invalid response."
         }
     }
 }

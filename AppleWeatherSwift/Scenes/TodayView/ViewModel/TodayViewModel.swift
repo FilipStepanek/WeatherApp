@@ -26,8 +26,8 @@ final class TodayViewModel: ObservableObject {
     private var loadingTask: Task<Void, Never>?
     
     init() {
-        setupBinding()
-    }
+           setupBinding()
+       }
     
     func initialLoad() {
         guard locationManager.status == .locationGranted else {
@@ -63,12 +63,13 @@ final class TodayViewModel: ObservableObject {
     }
     
     func getWeather(for location: CLLocationCoordinate2D) {
+        state = .loading
         loadingTask = Task {
             do {
                 let response = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
                 state = .succes(response)
             } catch {
-                if case GHError.noInternetConnection = error {
+                if case NetworkError.noInternetConnection = error {
                     return state = .errorNetwork(error.localizedDescription)
                 } else {
                     return state = .error(error.localizedDescription)
