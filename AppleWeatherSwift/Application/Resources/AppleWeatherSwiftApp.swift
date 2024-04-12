@@ -25,4 +25,10 @@ extension Container {
             WeatherManager()
         }
     }
+    
+    var locationManager: Factory<LocationManaging> {
+        Factory(self) {
+            LocationManager()
+        }
+    }
 }

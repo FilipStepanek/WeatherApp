@@ -20,6 +20,7 @@ class WeatherManager: WeatherManaging {
     
     private let networkManager = Network.shared
     
+    // TODO: Why is this calling twice?
     func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> CurrentResponse {
         let router = RouterWeatherManager.getCurrentWeather(latitude: latitude, longitude: longitude)
         do {

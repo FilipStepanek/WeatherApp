@@ -18,7 +18,7 @@ final class TodayViewModel: ObservableObject {
     
     //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
     @Injected(\.weatherManager) private var weatherManager
-    
+   
     var weatherManagerExtension = WeatherManagerExtension()
     private(set) var locationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
