@@ -16,8 +16,8 @@ final class ForecastViewModel: ObservableObject {
     
     //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
     @Injected(\.weatherManager) private var weatherManager
+    @Injected(\.locationManager) private var locationManager
     
-    private(set) var locationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
     private var loadingTask: Task<Void, Never>?
     
@@ -25,47 +25,42 @@ final class ForecastViewModel: ObservableObject {
            setupBinding()
        }
     
-    func initialLoad() {
-        guard locationManager.status == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-    }
-    
-    func onRefresh() {
-        guard locationManager.status == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-        guard let location = locationManager.location else {
-            
-            return
-        }
-        getForecast(for: location)
-    }
-    
     func setupBinding() {
-        locationManager.$location
-            .compactMap { $0 }
-            .sink { location in
-                print(location)
-                self.getForecast(for: location)
+        locationManager
+            .location
+            .compactMap{$0}
+            .sink { [weak self] location in
+                self?.getForecast(for: location)
+            }
+            .store(in: &cancellables)
+        
+        locationManager
+            .authorizationStatus
+            .sink { [weak self] status in
+                switch status {
+                case.locationGaranted:
+                    self?.locationManager.requestLocation()
+                default:
+                    self?.state = .missingLocation
+                }
             }
             .store(in: &cancellables)
     }
     
     func getForecast(for location: CLLocationCoordinate2D) {
         state = .loading
+        
         loadingTask = Task {
             do {
-                let forecastResponse = try await weatherManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
+                let forecastResponse = try await weatherManager.getForecastWeather(
+                    latitude: location.latitude,
+                    longitude: location.longitude)
                                 
-                let currentResponse = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                let currentResponse = try await weatherManager.getCurrentWeather(
+                    latitude: location.latitude,
+                    longitude: location.longitude)
                 
                 state = .success(forecastResponse, currentResponse)
-
             } catch {
                 if case NetworkError.noInternetConnection = error {
                     return state = .errorNetwork(error.localizedDescription)
@@ -75,7 +70,12 @@ final class ForecastViewModel: ObservableObject {
             }
         }
     }
+    
+    func onRefresh() {
+        locationManager.requestLocation()
+    }
 }
+
 // MARK: - State
 extension ForecastViewModel {
     enum State {

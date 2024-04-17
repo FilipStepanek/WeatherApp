@@ -8,36 +8,31 @@
 import Combine
 import CoreLocation
 import Factory
-import SwiftUI
 
 @MainActor
 final class TodayViewModel: ObservableObject {
     @Published var isShareSheetPresented = false
     @Published var shouldReloaded = false
-    @Published private(set) var state: State = .loading
     @Published var isConnected = true
     @Published var isPresented: Bool = false
+    @Published private(set) var state: State = .loading
     
     //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
     @Injected(\.weatherManager) private var weatherManager
     @Injected(\.locationManager) private var locationManager
     
     var weatherManagerExtension = WeatherManagerExtension()
-//    private(set) var locationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
     private var loadingTask: Task<Void, Never>?
     
     init() {
-           setupBinding()
-       }
+        setupBinding()
+    }
     
     func setupBinding() {
         locationManager
             .location
             .compactMap{$0}
-            .flatMap {
-                self.getWeather(for: $0)
-            }
             .sink { [weak self] location in
                 self?.getWeather(for: location)
             }
@@ -47,37 +42,37 @@ final class TodayViewModel: ObservableObject {
             .authorizationStatus
             .sink { [weak self] status in
                 switch status {
-                case .unknown:
-                    break
-                case .notDetermined:
+                case.locationGaranted:
+                    self?.locationManager.requestLocation()
+                default:
                     self?.state = .missingLocation
-                case .denied:
-                    self?.state = .missingLocation
-                case.locationGranted:
-                    state = .succes(weatherManager.currentResponse)
                 }
             }
+            .store(in: &cancellables)
     }
     
-    func initialLoad() {
-        guard locationManager.authorizationStatus == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-    }
-    
-    func getWeather(for location: CLLocationCoordinate2D) -> some Publisher<CurrentResponse, any Error> {
-        let publisher = PassthroughSubject<CurrentResponse, any Error>()
-        Task {
+    func getWeather(for location: CLLocationCoordinate2D) {
+        state = .loading
+        
+        loadingTask = Task {
             do {
-                let response = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                publisher.send(response)
+                let response = try await weatherManager.getCurrentWeather(
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                )
+                state = .succes(response)
             } catch {
-                publisher.send(completion: .failure(error))
+                if case NetworkError.noInternetConnection = error {
+                    return state = .errorNetwork(error.localizedDescription)
+                } else {
+                    return state = .error(error.localizedDescription)
+                }
             }
         }
-        return publisher
+    }
+    
+    func onRefresh() {
+        locationManager.requestLocation()
     }
 }
 

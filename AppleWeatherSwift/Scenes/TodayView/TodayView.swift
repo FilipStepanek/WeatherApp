@@ -17,7 +17,7 @@ struct TodayView: View {
             case .loading:
                 LoadingView()
             case .missingLocation:
-                EnableLocationView(locationManager: viewModelToday.locationManager)
+                EnableLocationView()
             case .succes(let currentResponse):
                 TodayViewContent(weather: currentResponse)
             case .error:
@@ -27,9 +27,6 @@ struct TodayView: View {
                     viewModelToday.onRefresh()
                 }
             }
-        }
-        .onLoad {
-            viewModelToday.initialLoad()
         }
     }
 }

@@ -37,7 +37,7 @@ struct ErrorFetchingDataView: View {
                         Button(action: {
                             
                             Task {
-                                await viewModelForecast.initialLoad()
+                                await viewModelForecast.onRefresh
                             }
                         }) {
                             Image.systemReload

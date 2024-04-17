@@ -25,7 +25,7 @@ struct ErrorFetchingDataView: View {
                     Logger.viewCycle.info("Button pressed Reload")
                     
                     Task {
-                        await viewModelForecast.initialLoad()
+                        await viewModelForecast.onRefresh
                     }
                 }) {
                     Image.systemReload

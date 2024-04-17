@@ -7,10 +7,10 @@
 
 import SwiftUI
 import CoreLocationUI
+import Factory
 
 struct EnableLocationView: View {
-    
-    let locationManager: LocationManager
+    @Injected(\.locationManager) var locationManager
     
     var body: some View {
         VStack (
@@ -49,6 +49,6 @@ struct EnableLocationView: View {
 
 #if DEBUG
 #Preview {
-    EnableLocationView(locationManager: LocationManager())
+    EnableLocationView()
 }
 #endif

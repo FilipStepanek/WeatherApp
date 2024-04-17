@@ -18,51 +18,47 @@ final class TodayViewModel: ObservableObject {
     
     //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
     @Injected(\.weatherManager) private var weatherManager
+    @Injected(\.locationManager) private var locationManager
    
     var weatherManagerExtension = WeatherManagerExtension()
-    private(set) var locationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
     private var loadingTask: Task<Void, Never>?
     
     init() {
-        setupBinding()
-    }
-    
-    func initialLoad() {
-        guard locationManager.status == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-    }
-    
-    func onRefresh() {
-        guard locationManager.status == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-        guard let location = locationManager.location else {
-            
-            return
-        }
-        getWeather(for: location)
+           setupBinding()
     }
     
     func setupBinding() {
-        locationManager.$location
-            .compactMap { $0 }
-            .sink { location in
-                print(location)
-                self.getWeather(for: location)
+        locationManager
+            .location
+            .compactMap{$0}
+            .sink { [weak self] location in
+                self?.getWeather(for: location)
+            }
+            .store(in: &cancellables)
+        
+        locationManager
+            .authorizationStatus
+            .sink { [weak self] status in
+                switch status {
+                case.locationGaranted:
+                    self?.locationManager.requestLocation()
+                default:
+                    self?.state = .missingLocation
+                }
             }
             .store(in: &cancellables)
     }
     
     func getWeather(for location: CLLocationCoordinate2D) {
+        state = .loading
+        
         loadingTask = Task {
             do {
-                let response = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                let response = try await weatherManager.getCurrentWeather(
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                )
                 state = .succes(response)
             } catch {
                 if case NetworkError.noInternetConnection = error {
@@ -72,6 +68,10 @@ final class TodayViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func onRefresh() {
+        locationManager.requestLocation()
     }
 }
 

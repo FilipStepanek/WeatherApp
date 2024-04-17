@@ -18,7 +18,7 @@ struct ForecastView: View {
             case .loading:
                 LoadingView()
             case .missingLocation:
-                EnableLocationView(locationManager: viewModelForecast.locationManager)
+                EnableLocationView()
             case .success(let forecastResponse, let currentResponse):
                 ForecastViewContent(weather: forecastResponse, weatherNow: currentResponse)
             case .error:
@@ -28,9 +28,6 @@ struct ForecastView: View {
                     viewModelForecast.onRefresh()
                 }
             }
-        }
-        .onLoad {
-            viewModelForecast.initialLoad()
         }
     }
 }

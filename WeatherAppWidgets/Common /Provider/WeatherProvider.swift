@@ -25,7 +25,7 @@ struct WeatherProvider: TimelineProvider {
             completion(entry)
         }
     }
-    
+    // TODO: sync data hourly API manager, locationManager
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         if let currentResponse = SharedDataSource.shared.getCurrentResponse() {
             let currentDate = Date()
