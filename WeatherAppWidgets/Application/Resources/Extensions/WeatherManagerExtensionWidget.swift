@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class weatherManagerExtensionWidget {
+class WeatherManagerExtensionWidget {
     
     // MARK: - Getting image name from current weather icon
     func getImageNameFromWeatherIcon(icon: String) -> String {

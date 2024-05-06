@@ -19,7 +19,6 @@ final class ForecastViewModel: ObservableObject {
     @Injected(\.locationManager) private var locationManager
     
     private var cancellables = Set<AnyCancellable>()
-    private var loadingTask: Task<Void, Never>?
     
     init() {
         setupBinding()
@@ -50,7 +49,7 @@ final class ForecastViewModel: ObservableObject {
     func getForecast(for location: CLLocationCoordinate2D) {
         state = .loading
         
-        loadingTask = Task {
+        Task {
             do {
                 let forecastResponse = try await weatherManager.getForecastWeather(
                     latitude: location.latitude,

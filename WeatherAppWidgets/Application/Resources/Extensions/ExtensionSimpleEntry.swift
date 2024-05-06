@@ -16,4 +16,12 @@ extension SimpleEntry {
         icon: Image(.todaySun),
         location: "Prague"
     )
+
+//MARK: - Extension for getSnapshot
+    static let getSnapshot = SimpleEntry(
+        date: Date(),
+        temperature: 0,
+        icon: Image(systemName: "photo.circle.fill"),
+        location: "Unknown"
+    )
 }

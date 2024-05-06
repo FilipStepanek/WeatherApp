@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import Factory
 
 @main
 struct WeatherAppWidgetsBundle: WidgetBundle {
@@ -15,3 +16,18 @@ struct WeatherAppWidgetsBundle: WidgetBundle {
         WidgetExtension()
     }
 }
+
+extension Container {
+    var weatherManager: Factory<WeatherManaging> {
+        Factory(self) {
+            WeatherManager()
+        }
+    }
+    
+    var locationManager: Factory<LocationManaging> {
+        Factory(self) {
+            LocationManager()
+        }
+    }
+}
+

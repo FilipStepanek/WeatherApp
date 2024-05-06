@@ -40,11 +40,3 @@ struct WeatherEntryView: View {
     }
     
 }
-
-//#if DEBUG
-//#Preview {
-//    let icon = Image("todaySun")
-//    WeatherEntryView(entry: SimpleEntry(date: Date(), temperature: 25.0, icon: icon, location: "Prague"))
-//}
-//#endif
-//

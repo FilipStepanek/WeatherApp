@@ -31,7 +31,7 @@ enum NetworkError: LocalizedError {
         case .defaultError:
             return "Something went wrong."
         case .noInternetConnection:
-            return "No internet connection."
+            return "No internet connection >P ."
         case .invalidResponse:
             return "Invalid response."
         }

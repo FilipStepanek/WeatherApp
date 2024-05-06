@@ -23,7 +23,6 @@ final class TodayViewModel: ObservableObject {
     
     var weatherManagerExtension = WeatherManagerExtension()
     private var cancellables = Set<AnyCancellable>()
-    private var loadingTask: Task<Void, Never>?
     
     init() {
         setupBinding()
@@ -54,7 +53,7 @@ final class TodayViewModel: ObservableObject {
     func getWeather(for location: CLLocationCoordinate2D) {
         state = .loading
         
-        loadingTask = Task {
+        Task {
             do {
                 let response = try await weatherManager.getCurrentWeather(
                     latitude: location.latitude,

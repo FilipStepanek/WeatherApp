@@ -13,7 +13,10 @@ struct TodayDetailInfo: View {
     
     var body: some View {
         
-        Grid (alignment: .leading, horizontalSpacing: 0, verticalSpacing: 8) {
+        Grid (alignment: .leading, 
+              horizontalSpacing: 0,
+              verticalSpacing: 8)
+        {
             GridRow {
                 TodayDetailInfoLineHumidity
                 TodayDetailInfoLinePrecipation
