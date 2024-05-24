@@ -39,7 +39,6 @@
 		852476F02B7DEFF00014D850 /* Font+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852476EF2B7DEFF00014D850 /* Font+App.swift */; };
 		852476F22B7DF0210014D850 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852476F12B7DF0210014D850 /* ButtonStyle.swift */; };
 		852DB8972B70BD2100596FFB /* ErrorAnimationBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DB8962B70BD2100596FFB /* ErrorAnimationBackgroundView.swift */; };
-		852DB8992B73613100596FFB /* ForecastDetailNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DB8982B73613100596FFB /* ForecastDetailNowView.swift */; };
 		852DB8C52B74B3AC00596FFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DB8C42B74B3AC00596FFB /* ContentView.swift */; };
 		852DB8C72B74B3AE00596FFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852DB8C62B74B3AE00596FFB /* Assets.xcassets */; };
 		852DB8CA2B74B3AE00596FFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852DB8C92B74B3AE00596FFB /* Preview Assets.xcassets */; };
@@ -69,6 +68,12 @@
 		858AF8AE2B5906D200F91C3F /* WeatherManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF8AD2B5906D200F91C3F /* WeatherManagerExtension.swift */; };
 		858AF8B02B59206000F91C3F /* ShareButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF8AF2B59206000F91C3F /* ShareButtonExtension.swift */; };
 		858AF8B42B5A5E1200F91C3F /* ErrorInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF8B32B5A5E1200F91C3F /* ErrorInternetConnectionView.swift */; };
+		8591CB502BE90E260054323B /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B73FF32BBAF9DC001AF499 /* SimpleEntry.swift */; };
+		8591CB522BE90E2A0054323B /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B73FF32BBAF9DC001AF499 /* SimpleEntry.swift */; };
+		8591CB532BE90E3F0054323B /* WeatherManagerExtensionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412E262B83B644000EB544 /* WeatherManagerExtensionWidget.swift */; };
+		8591CB552BE90E400054323B /* WeatherManagerExtensionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412E262B83B644000EB544 /* WeatherManagerExtensionWidget.swift */; };
+		8591CB562BE90E7F0054323B /* ExtensionSimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B73FF12BBAF98C001AF499 /* ExtensionSimpleEntry.swift */; };
+		8591CB572BE90E800054323B /* ExtensionSimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B73FF12BBAF98C001AF499 /* ExtensionSimpleEntry.swift */; };
 		85A49A812BD3ACEF00C46375 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C8A7B02B1B83E500BCBC3A /* WeatherManager.swift */; };
 		85A49A822BD3ACF200C46375 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C8A7A42B19BCDB00BCBC3A /* LocationManager.swift */; };
 		85A49A832BD3ACF500C46375 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B73FF92BBD2720001AF499 /* Network.swift */; };
@@ -220,7 +225,6 @@
 		852476EF2B7DEFF00014D850 /* Font+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+App.swift"; sourceTree = "<group>"; };
 		852476F12B7DF0210014D850 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		852DB8962B70BD2100596FFB /* ErrorAnimationBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAnimationBackgroundView.swift; sourceTree = "<group>"; };
-		852DB8982B73613100596FFB /* ForecastDetailNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailNowView.swift; sourceTree = "<group>"; };
 		852DB8C02B74B3AC00596FFB /* WeatherAppAppleWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherAppAppleWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		852DB8C42B74B3AC00596FFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		852DB8C62B74B3AE00596FFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -874,7 +878,6 @@
 				85C8A7972B15C67E00BCBC3A /* ForecastDetailView.swift */,
 				85C8A7992B15CE2100BCBC3A /* ForecastHeaderInfoView.swift */,
 				85C2B5FB2B4C52A500305CDF /* ForecastViewContent.swift */,
-				852DB8982B73613100596FFB /* ForecastDetailNowView.swift */,
 			);
 			path = ForecastView;
 			sourceTree = "<group>";
@@ -1150,12 +1153,14 @@
 				852476EC2B7DEF490014D850 /* ExtensionsDouble.swift in Sources */,
 				85B740032BBD32ED001AF499 /* Router.swift in Sources */,
 				852476E42B7B4A110014D850 /* ForecastDetailNowView.swift in Sources */,
+				8591CB572BE90E800054323B /* ExtensionSimpleEntry.swift in Sources */,
 				85B740012BBD32E9001AF499 /* Network.swift in Sources */,
 				85D47C222BA185A500F9B53C /* ExtensionString.swift in Sources */,
 				852476E22B7B49FE0014D850 /* ForecastViewContent.swift in Sources */,
 				852476B62B79FCC80014D850 /* LocationManager.swift in Sources */,
 				852476CC2B7A07DC0014D850 /* EnableLocation.swift in Sources */,
 				852476C72B7A06DB0014D850 /* TodayViewModel.swift in Sources */,
+				8591CB522BE90E2A0054323B /* SimpleEntry.swift in Sources */,
 				85B740052BBD32F1001AF499 /* NetworkError.swift in Sources */,
 				852476CF2B7A08350014D850 /* ErrorFetchingDataView.swift in Sources */,
 				85B7400B2BBE7A03001AF499 /* RouterWeatherManager.swift in Sources */,
@@ -1170,6 +1175,7 @@
 				852476B72B79FCCB0014D850 /* WeatherManager.swift in Sources */,
 				852476EE2B7DEFAF0014D850 /* AppText.swift in Sources */,
 				852DB8EF2B74B98300596FFB /* AppleWeatherSwiftApp.swift in Sources */,
+				8591CB552BE90E400054323B /* WeatherManagerExtensionWidget.swift in Sources */,
 				850FC5AB2BA9D6C000E66FB4 /* OnLoadModifier.swift in Sources */,
 				850FC5A42BA8A74500E66FB4 /* Constants.swift in Sources */,
 				852476B42B79F98D0014D850 /* TodayView.swift in Sources */,
@@ -1224,6 +1230,7 @@
 				85C0C9052B0F2EBD00733E82 /* EnableLocationView.swift in Sources */,
 				858AF8AE2B5906D200F91C3F /* WeatherManagerExtension.swift in Sources */,
 				85C8A7A52B19BCDB00BCBC3A /* LocationManager.swift in Sources */,
+				8591CB532BE90E3F0054323B /* WeatherManagerExtensionWidget.swift in Sources */,
 				85C2B5FC2B4C52A500305CDF /* ForecastViewContent.swift in Sources */,
 				857AC6E32AF23C6200C4906F /* TodayView.swift in Sources */,
 				85C8A7942B1477EA00BCBC3A /* TodayAnimationBackgroundView.swift in Sources */,
@@ -1236,18 +1243,19 @@
 				858AF8B42B5A5E1200F91C3F /* ErrorInternetConnectionView.swift in Sources */,
 				85C8A7982B15C67E00BCBC3A /* ForecastDetailView.swift in Sources */,
 				857AC6DF2AF23A3100C4906F /* ForecastView.swift in Sources */,
-				852DB8992B73613100596FFB /* ForecastDetailNowView.swift in Sources */,
 				85D47C342BA8287C00F9B53C /* Constants.swift in Sources */,
 				85C8A7B72B1DAF1D00BCBC3A /* ExtensionDouble.swift in Sources */,
 				85C0C9092B0F9C2300733E82 /* AppText.swift in Sources */,
 				85B73FFE2BBD28B0001AF499 /* NetworkError.swift in Sources */,
 				857AC6AF2AF22F0B00C4906F /* ContentView.swift in Sources */,
 				85B7400A2BBE7A01001AF499 /* RouterWeatherManager.swift in Sources */,
+				8591CB562BE90E7F0054323B /* ExtensionSimpleEntry.swift in Sources */,
 				85D47C262BA2D4A300F9B53C /* ResponseData.swift in Sources */,
 				85C8A7BB2B1F0A3E00BCBC3A /* ShareSheetView.swift in Sources */,
 				85D47C2E2BA43E9B00F9B53C /* ExtensionTemperatureLogic.swift in Sources */,
 				85D47C1E2BA183BD00F9B53C /* ExtensionImage.swift in Sources */,
 				85C0C9032B0F2EA500733E82 /* ErrorFetchingDataView.swift in Sources */,
+				8591CB502BE90E260054323B /* SimpleEntry.swift in Sources */,
 				85C0C90B2B0FB7D400733E82 /* ButtonStyle.swift in Sources */,
 				857AC6AD2AF22F0B00C4906F /* AppleWeatherSwiftApp.swift in Sources */,
 				85C0C9072B0F37FF00733E82 /* Image+App.swift in Sources */,

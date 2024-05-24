@@ -80,15 +80,15 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string></string>
+				<string>!</string>
 				<key>leading</key>
-				<string>                ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(Array(groupedData.keys.sorted().enumerated()), id: \.1) { dayIndex, dateString in
-                        let forecasts = groupedData[dateString]!</string>
+				<string>//                ScrollView(.vertical, showsIndicators: false) {
+//                    ForEach(Array(groupedData.keys.sorted().enumerated()), id: \.1) { dayIndex, dateString in
+//                        let forecasts = groupedData[dateString]</string>
 				<key>trailing</key>
 				<string>
-                        
-                        LazyVGrid(columns: columns, spacing: 8, pinnedViews: [.sectionHeaders]) {
+//                        
+//                        LazyVGrid(columns: columns, spacing: 8, pinnedViews: [.sectionHeaders]) {
 </string>
 			</dict>
 			<key>title</key>
