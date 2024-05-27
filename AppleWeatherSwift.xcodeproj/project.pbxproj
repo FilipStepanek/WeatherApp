@@ -44,6 +44,7 @@
 		852DB8CA2B74B3AE00596FFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852DB8C92B74B3AE00596FFB /* Preview Assets.xcassets */; };
 		852DB8E32B74B3AE00596FFB /* WeatherAppAppleWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 852DB8C02B74B3AC00596FFB /* WeatherAppAppleWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		852DB8EF2B74B98300596FFB /* AppleWeatherSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AC6AC2AF22F0B00C4906F /* AppleWeatherSwiftApp.swift */; };
+		853EFC812C04BD6000E544F2 /* ConditionalScrollTransitio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EFC802C04BD6000E544F2 /* ConditionalScrollTransitio.swift */; };
 		85412DE72B826D21000EB544 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85412DE62B826D21000EB544 /* WidgetKit.framework */; };
 		85412DE92B826D21000EB544 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85412DE82B826D21000EB544 /* SwiftUI.framework */; };
 		85412DEC2B826D21000EB544 /* WeatherAppWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412DEB2B826D21000EB544 /* WeatherAppWidgetsBundle.swift */; };
@@ -232,6 +233,7 @@
 		852DB8D32B74B3AE00596FFB /* WeatherAppAppleWatch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppAppleWatch_Watch_AppTests.swift; sourceTree = "<group>"; };
 		852DB8DD2B74B3AE00596FFB /* WeatherAppAppleWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppAppleWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		852DB8DF2B74B3AE00596FFB /* WeatherAppAppleWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppAppleWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		853EFC802C04BD6000E544F2 /* ConditionalScrollTransitio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalScrollTransitio.swift; sourceTree = "<group>"; };
 		85412DE42B826D21000EB544 /* WeatherAppWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WeatherAppWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		85412DE62B826D21000EB544 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		85412DE82B826D21000EB544 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -778,6 +780,7 @@
 				858AF8AD2B5906D200F91C3F /* WeatherManagerExtension.swift */,
 				858AF8AF2B59206000F91C3F /* ShareButtonExtension.swift */,
 				85C0C8AE2B04A0A100733E82 /* Styles */,
+				853EFC802C04BD6000E544F2 /* ConditionalScrollTransitio.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1240,6 +1243,7 @@
 				85C2B5F82B4C27A700305CDF /* TodayViewContent.swift in Sources */,
 				85D47C1C2BA183AC00F9B53C /* ExtensionDate.swift in Sources */,
 				85C2B5F62B36D42900305CDF /* TodayViewModel.swift in Sources */,
+				853EFC812C04BD6000E544F2 /* ConditionalScrollTransitio.swift in Sources */,
 				858AF8B42B5A5E1200F91C3F /* ErrorInternetConnectionView.swift in Sources */,
 				85C8A7982B15C67E00BCBC3A /* ForecastDetailView.swift in Sources */,
 				857AC6DF2AF23A3100C4906F /* ForecastView.swift in Sources */,

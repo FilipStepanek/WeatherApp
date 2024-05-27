@@ -10,8 +10,8 @@ import OSLog
 
 struct TodayViewContent: View {
     
-        @StateObject private var viewModel = TodayViewModel()
-        let weather: CurrentResponse
+    @StateObject private var viewModel = TodayViewModel()
+    let weather: CurrentResponse
     
     var body: some View {
         VStack {
@@ -19,32 +19,22 @@ struct TodayViewContent: View {
                 Spacer()
                 
                 shareButton
-                
                     .padding(.trailing)
             }
             .padding(.top)
             
-            
             VStack(alignment: .leading) {
-                ScrollView(showsIndicators: false)
-                {
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         Spacer(minLength: 70)
                         
-                        VStack (
-                            alignment: .leading,
-                            spacing: 48
-                        ){
-                            
+                        VStack(alignment: .leading, spacing: 48) {
                             todayTitleInformation
-                            
+                                .modifier(ConditionalScrollTransition())                            
                             todayInformation
                         }
                         
-                        VStack (
-                            alignment: .leading,
-                            spacing: 15
-                        ){
+                        VStack(alignment: .leading, spacing: 15) {
                             rectangles
                             
                             TodayDetailInfo(weather: weather)
@@ -53,9 +43,8 @@ struct TodayViewContent: View {
                         }
                         .padding(.vertical)
                     }
-                    
                 }
-                .refreshable{
+                .refreshable {
                     viewModel.onRefresh()
                 }
             }
@@ -65,13 +54,13 @@ struct TodayViewContent: View {
             TodayAnimationBackgroundView(weather: weather)
         )
         .sheet(isPresented: $viewModel.isShareSheetPresented) {
-            ShareSheetView(activityItems: [ URL(string: Constants.openWeatherMapURL)])
+            ShareSheetView(activityItems: [URL(string: Constants.openWeatherMapURL)])
                 .presentationDetents([.medium, .large])
         }
     }
+    
     @ViewBuilder
     var shareButton: some View {
-        
         Button(action: {
             Logger.viewCycle.info("Button pressed Share")
             viewModel.isShareSheetPresented = true
@@ -93,7 +82,6 @@ struct TodayViewContent: View {
             .minimumScaleFactor(0.8)
             .frame(height: 128, alignment: .bottom)
     }
-        
     
     var rectangles: some View {
         Rectangle()
@@ -103,10 +91,9 @@ struct TodayViewContent: View {
     
     @ViewBuilder
     var todayInformation: some View {
-        
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
-        VStack (alignment: .leading, spacing: -4) {
+        VStack(alignment: .leading, spacing: -4) {
             Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
                 .resizable()
                 .scaledToFit()
@@ -117,7 +104,7 @@ struct TodayViewContent: View {
                 .modifier(TemperatureModifier())
                 .padding(.vertical, 4)
             
-            Text((weather.name ) + ", " + (String().countryName(countryCode: weather.sys.country ) ?? "Unknown"))
+            Text((weather.name) + ", " + (String().countryName(countryCode: weather.sys.country) ?? "Unknown"))
                 .modifier(ContentModifier())
                 .padding(.vertical, 8)
         }
