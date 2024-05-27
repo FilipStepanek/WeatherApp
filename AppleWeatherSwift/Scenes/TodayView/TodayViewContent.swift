@@ -24,11 +24,12 @@ struct TodayViewContent: View {
             }
             .padding(.top)
             
+            
             VStack(alignment: .leading) {
                 ScrollView(showsIndicators: false)
                 {
                     VStack(alignment: .leading) {
-                        Spacer(minLength: 115)
+                        Spacer(minLength: 70)
                         
                         VStack (
                             alignment: .leading,
@@ -88,12 +89,16 @@ struct TodayViewContent: View {
         Text(WeatherManagerExtension().getWeatherInfoFromWeatherIcon(icon: weather.weather.first?.icon ?? "", temperature: weather.main.temp))
             .modifier(TitleModifier())
             .foregroundColor(.mainText)
+            .lineLimit(2)
+            .minimumScaleFactor(0.8)
+            .frame(height: 128, alignment: .bottom)
     }
+        
     
     var rectangles: some View {
         Rectangle()
             .frame(maxHeight: 1)
-            .foregroundColor(.devider)
+            .foregroundColor(.divider)
     }
     
     @ViewBuilder
