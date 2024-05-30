@@ -40,7 +40,7 @@ final class TodayViewModel: ObservableObject {
             .authorizationStatus
             .sink { [weak self] status in
                 switch status {
-                case.locationGaranted:
+                case.locationGranted:
                     self?.locationManager.requestLocation()
                 default:
                     self?.state = .missingLocation

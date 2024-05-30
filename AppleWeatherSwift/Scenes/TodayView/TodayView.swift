@@ -18,7 +18,7 @@ struct TodayView: View {
                 LoadingView()
             case .missingLocation:
                 EnableLocationView()
-            case .succes(let currentResponse):
+            case .success(let currentResponse):
                 TodayViewContent(weather: currentResponse)
             case .error:
                 ErrorFetchingDataView()

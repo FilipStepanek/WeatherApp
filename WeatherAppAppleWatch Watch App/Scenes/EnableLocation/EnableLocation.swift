@@ -40,7 +40,7 @@ struct EnableLocationView: View {
                         Spacer()
                         
                         Button(action: {
-                            locationManager.requestLocationRemission()
+                            locationManager.requestLocationPermission()
                             print("Button pressed Enable location")
                             
                         }) {

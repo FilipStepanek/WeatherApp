@@ -89,7 +89,7 @@ struct WeatherProvider: TimelineProvider {
             .authorizationStatus // Bind to authorization status changes
             .sink { [self] status in
                 switch status {
-                case .locationGaranted:
+                case .locationGranted:
                     locationManager.requestLocation() // Request location if authorized
                 default:
                     break

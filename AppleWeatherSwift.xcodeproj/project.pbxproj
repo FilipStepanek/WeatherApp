@@ -779,8 +779,8 @@
 				85D47C1D2BA183BD00F9B53C /* ExtensionImage.swift */,
 				858AF8AD2B5906D200F91C3F /* WeatherManagerExtension.swift */,
 				858AF8AF2B59206000F91C3F /* ShareButtonExtension.swift */,
-				85C0C8AE2B04A0A100733E82 /* Styles */,
 				853EFC802C04BD6000E544F2 /* ConditionalScrollTransitio.swift */,
+				85C0C8AE2B04A0A100733E82 /* Styles */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

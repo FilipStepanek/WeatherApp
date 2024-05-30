@@ -14,41 +14,44 @@ struct TodayViewContent: View {
     let weather: CurrentResponse
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                shareButton
-                    .padding(.trailing)
-            }
-            .padding(.top)
-            
-            VStack(alignment: .leading) {
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading) {
-                        Spacer(minLength: 70)
+        GeometryReader { proxy in
+            ScrollView(showsIndicators: false) {
+                let _ = print(proxy.size.height)
+                VStack(alignment: .leading) {
+                    Spacer(minLength: 70)
+                    
+                    VStack(alignment: .leading, spacing: 48) {
+                        todayTitleInformation
+                            .modifier(ConditionalScrollTransition())
                         
-                        VStack(alignment: .leading, spacing: 48) {
-                            todayTitleInformation
-                                .modifier(ConditionalScrollTransition())                            
-                            todayInformation
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 15) {
-                            rectangles
-                            
-                            TodayDetailInfo(weather: weather)
-                            
-                            rectangles
-                        }
-                        .padding(.vertical)
+                        todayInformation
+                            .modifier(ConditionalScrollTransition())
                     }
+                    
+                    VStack(alignment: .leading, spacing: 15) {
+                        rectangles
+                            .modifier(ConditionalScrollTransition())
+                        
+                        TodayDetailInfo(weather: weather)
+                            .modifier(ConditionalScrollTransition())
+                        
+                        rectangles
+                            .modifier(ConditionalScrollTransition())
+                    }
+                    .padding(.vertical)
                 }
-                .refreshable {
-                    viewModel.onRefresh()
-                }
+                .frame(height: proxy.size.height)
             }
+            
+            .refreshable {
+                viewModel.onRefresh()
+            }
+            
             .padding(.horizontal)
+        }
+        .safeAreaInset(edge: .top, alignment: .trailing) {
+            shareButton
+                .padding(.trailing)
         }
         .background(
             TodayAnimationBackgroundView(weather: weather)
@@ -80,7 +83,6 @@ struct TodayViewContent: View {
             .foregroundColor(.mainText)
             .lineLimit(2)
             .minimumScaleFactor(0.8)
-            .frame(height: 128, alignment: .bottom)
     }
     
     var rectangles: some View {
