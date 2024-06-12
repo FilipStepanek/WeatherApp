@@ -23,4 +23,3 @@ extension Locale {
         localizedString(forRegionCode: countryCode)
     }
 }
-

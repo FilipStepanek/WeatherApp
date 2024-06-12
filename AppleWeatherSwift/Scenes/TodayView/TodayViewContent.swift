@@ -10,7 +10,7 @@ import OSLog
 
 struct TodayViewContent: View {
     
-    @StateObject private var viewModel = TodayViewModel()
+    @EnvironmentObject private var viewModel: TodayViewModel
     let weather: CurrentResponse
     
     var body: some View {

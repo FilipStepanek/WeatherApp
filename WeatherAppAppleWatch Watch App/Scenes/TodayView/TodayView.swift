@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TodayView: View {
     
+    // TODO: update
     @StateObject private var viewModelToday = TodayViewModel()
     
     var body: some View {
@@ -28,6 +29,7 @@ struct TodayView: View {
                 }
             }
         }
+        .environmentObject(viewModelToday)
     }
 }
 

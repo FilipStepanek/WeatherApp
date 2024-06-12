@@ -79,4 +79,3 @@ struct MediumModifier: ViewModifier {
             .foregroundColor(.contentRegular)
     }
 }
-

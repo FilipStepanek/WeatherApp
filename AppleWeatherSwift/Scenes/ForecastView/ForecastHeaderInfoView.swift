@@ -54,4 +54,3 @@ struct ForecastHeaderInfoView: View {
     ForecastHeaderInfoView(dayIndex: 0)
 }
 #endif
-

@@ -7,9 +7,53 @@
 
 import SwiftUI
 
+protocol WeatherData {
+    var temperature: Double { get }
+    var icon: String { get }
+    var weatherInfo: String { get }
+    var dateInfo: String { get }
+}
+
+extension ForecastResponse.ListResponse: WeatherData {
+    var temperature: Double {
+        return main.temp
+    }
+    
+    var icon: String {
+        return weather.first?.icon ?? ""
+    }
+    
+    var weatherInfo: String {
+        return WeatherManagerExtension().getWeatherInfoFromForecastIcon(icon: icon)
+    }
+    
+    var dateInfo: String {
+        return Date.formatUnixTimestampInGMT(self.date)
+    }
+}
+
+extension CurrentResponse: WeatherData {
+    var temperature: Double {
+        return main.temp
+    }
+    
+    var icon: String {
+        return weather.first?.icon ?? ""
+    }
+    
+    var weatherInfo: String {
+        return WeatherManagerExtension().getWeatherInfoFromForecastIcon(icon: icon)
+    }
+    
+    var dateInfo: String {
+        return "Now"
+    }
+}
+
+
 struct ForecastDetailView: View {
     
-    let weather: ForecastResponse.ListResponse
+    let weatherData: WeatherData
     
     var body: some View {
     
@@ -25,7 +69,7 @@ struct ForecastDetailView: View {
                     .frame(maxWidth: 35, maxHeight: 35)
                     .cornerRadius(35)
                     .foregroundColor(.iconBase)
-                Image(WeatherManagerExtension().getImageNameFromForecastIcon(icon: weather.weather.first?.icon ?? ""))
+                Image(WeatherManagerExtension().getImageNameFromForecastIcon(icon: weatherData.icon))
                     .imageSize()
                 
             }
@@ -34,17 +78,15 @@ struct ForecastDetailView: View {
             
             VStack(
                 alignment: .leading
-                
             ) {
-                
-                
-                Text(Date.formatUnixTimestampInGMT(weather.date))
-                    .modifier(ContentMediumModifier())
-                
-                Text(WeatherManagerExtension().getWeatherInfoFromForecastIcon(icon: weather.weather.first?.icon ?? ""))
-                    .modifier(MediumModifier())
+                if let listResponse = weatherData as? ForecastResponse.ListResponse {
+                    Text(listResponse.dateInfo)
+                        .modifier(ContentMediumModifier())
+                } else if let currentResponse = weatherData as? CurrentResponse {
+                    Text(currentResponse.dateInfo)
+                        .modifier(ContentMediumModifier())
+                }
             }
-            
             Spacer()
             
             Text(temperatureWithUnits)
@@ -60,16 +102,34 @@ struct ForecastDetailView: View {
         let measurementFormatter = MeasurementFormatter()
         measurementFormatter.numberFormatter.maximumFractionDigits = 0
         
-        let temperature = Measurement(value: weather.main.temp, unit: UnitTemperature.celsius)
+        let temperature = Measurement(value: weatherData.temperature, unit: UnitTemperature.celsius)
         return measurementFormatter.string(from: temperature)
     }
 }
 
 #if DEBUG
-#Preview {
-        let mockListResponse = ForecastResponse.ListResponse(date: 1702749600, main: ForecastResponse.MainResponseForecast(temp: 0), weather: [])
-        let mockForecastResponse = ForecastResponse(city: ForecastResponse.CoordinatesResp(coord: ForecastResponse.Coordinates(lon: 0, lat: 0)), list: [mockListResponse])
+struct ForecastDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        let mockForecastResponse = ForecastResponse.ListResponse(
+            date: 1702749600,
+            main: ForecastResponse.MainResponseForecast(temp: 30),
+            weather: [ForecastResponse.WeatherResponseForecast(icon: "01d")]
+        )
         
-        return ForecastDetailView(weather: mockForecastResponse.list.first ?? mockListResponse)
+        let mockCurrentResponse = CurrentResponse(
+            coord: CurrentResponse.CoordinatesResponse(lon: 0, lat: 0),
+            weather: [CurrentResponse.WeatherResponse(id: 800, main: "Clear", description: "clear sky", icon: "01d")],
+            main: CurrentResponse.MainResponse(temp: 25, pressure: 1013, humidity: 60),
+            name: "Sample City",
+            wind: CurrentResponse.WindResponse(speed: 5.0, deg: 180),
+            sys: CurrentResponse.CountryName(country: "Sample Country"),
+            rain: nil
+        )
+
+        return Group {
+            ForecastDetailView(weatherData: mockForecastResponse)
+            ForecastDetailView(weatherData: mockCurrentResponse)
+        }
     }
+}
 #endif

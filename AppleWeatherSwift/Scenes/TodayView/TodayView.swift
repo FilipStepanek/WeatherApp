@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TodayView: View {
-    // TODO: Make it private again, add init
-    @StateObject var viewModelToday: TodayViewModel
+  
+    @StateObject private var viewModelToday = TodayViewModel()
     
     var body: some View {
         ZStack {
@@ -21,18 +21,21 @@ struct TodayView: View {
             case .success(let currentResponse):
                 TodayViewContent(weather: currentResponse)
             case .error:
-                ErrorFetchingDataView()
+                ErrorFetchingDataView {
+                    viewModelToday.onRefresh()
+                }
             case .errorNetwork:
                 ErrorInternetConnectionView {
                     viewModelToday.onRefresh()
                 }
             }
         }
+        .environmentObject(viewModelToday)
     }
 }
 
 #if DEBUG
 #Preview {
-    TodayView(viewModelToday: .init())
+    TodayView()
 }
 #endif

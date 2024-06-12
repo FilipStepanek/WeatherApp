@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ErrorFetchingDataView: View {
     
+    // TODO: update
     @StateObject private var viewModelToday = TodayViewModel()
     @StateObject private var viewModelForecast = ForecastViewModel()
     

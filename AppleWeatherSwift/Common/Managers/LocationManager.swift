@@ -37,6 +37,7 @@ class LocationManager: NSObject, LocationManaging, CLLocationManagerDelegate {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        startMonitoringLocation()
     }
     
     // MARK: - Request Location
@@ -91,4 +92,29 @@ class LocationManager: NSObject, LocationManaging, CLLocationManagerDelegate {
             Logger.networking.info("Generic Location Manager Error: \(error.localizedDescription)")
         }
     }
+    
+    // MARK: - Smart Location Management
+        private func startMonitoringLocation() {
+            #if os(iOS)
+            if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+                manager.startMonitoringSignificantLocationChanges()
+            } else {
+                manager.startUpdatingLocation()
+            }
+            #elseif os(watchOS)
+            manager.startUpdatingLocation()
+            #endif
+        }
+        
+        func stopMonitoringSignificantLocationChanges() {
+            #if os(iOS)
+            if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+                manager.stopMonitoringSignificantLocationChanges()
+            } else {
+                manager.stopUpdatingLocation()
+            }
+            #elseif os(watchOS)
+            manager.stopUpdatingLocation()
+            #endif
+        }
 }

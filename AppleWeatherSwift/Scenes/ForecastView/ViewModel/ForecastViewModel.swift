@@ -15,6 +15,9 @@ final class ForecastViewModel: ObservableObject {
     @Published var shouldReloaded = false
     @Published private(set) var state: State = .loading
     
+    // Publisher for signaling data fetching completion
+    private let dataFetchCompletion = PassthroughSubject<Void, Never>()
+    
     //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
     @Injected(\.weatherManager) private var weatherManager
     @Injected(\.locationManager) private var locationManager
@@ -22,8 +25,9 @@ final class ForecastViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-           setupBinding()
-       }
+        Logger.networking.debug("ForecastViewModel initialized")
+        setupBinding()
+    }
     
     func setupBinding() {
         locationManager
@@ -57,7 +61,7 @@ final class ForecastViewModel: ObservableObject {
                 let forecastResponse = try await weatherManager.getForecastWeather(
                     latitude: location.latitude,
                     longitude: location.longitude)
-                                
+                
                 let currentResponse = try await weatherManager.getCurrentWeather(
                     latitude: location.latitude,
                     longitude: location.longitude)
@@ -65,16 +69,19 @@ final class ForecastViewModel: ObservableObject {
                 state = .success(forecastResponse, currentResponse)
             } catch {
                 if case NetworkError.noInternetConnection = error {
-                    return state = .errorNetwork(error.localizedDescription)
+                    state = .errorNetwork(error.localizedDescription)
                 } else {
-                    return state = .error(error.localizedDescription)
+                    state = .error(error.localizedDescription)
                 }
             }
+            
+            // Signal data fetching completion
+            dataFetchCompletion.send(())
         }
     }
     
     func onRefresh() {
-        Logger.networking.info("onRefresh called for Today")
+        Logger.networking.info("onRefresh called for Forecast")
         
         // Add a delay before requesting location and fetching weather data
         Task {
@@ -85,10 +92,15 @@ final class ForecastViewModel: ObservableObject {
             
             // Immediately fetch weather with the last known location if available, without setting loading state
             if let lastLocation = locationManager.lastLocation?.coordinate {
-                Logger.networking.info("onResfersh - location is same for Today")
+                Logger.networking.info("onResfersh - location is same for Forecast")
                 getForecast(for: lastLocation, setLoadingState: false)
             }
         }
+    }
+    
+    // Publisher to signal data fetching completion
+    func dataFetchCompletionPublisher() -> AnyPublisher<Void, Never> {
+        dataFetchCompletion.eraseToAnyPublisher()
     }
 }
 

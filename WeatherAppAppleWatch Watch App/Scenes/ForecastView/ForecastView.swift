@@ -10,7 +10,6 @@ import SwiftUI
 struct ForecastView: View {
     
     @StateObject private var viewModelForecast = ForecastViewModel()
-    @StateObject private var viewModelToday = TodayViewModel()
     
     var body: some View {
         ZStack {
@@ -29,6 +28,7 @@ struct ForecastView: View {
                 }
             }
         }
+        .environmentObject(viewModelForecast)
     }
 }
 

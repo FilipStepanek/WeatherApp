@@ -9,10 +9,10 @@ import SwiftUI
 
 struct TodayViewContent: View {
     
-    @StateObject private var viewModel = TodayViewModel()
-    let weather: CurrentResponse
-    
+    @EnvironmentObject private var viewModel: TodayViewModel
     @State private var isShowingForecast = false
+    
+    let weather: CurrentResponse
     
     var body: some View {
         VStack {

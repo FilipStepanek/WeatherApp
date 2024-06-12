@@ -54,6 +54,7 @@ struct ForecastDetailView: View {
     let weatherData: WeatherData
     
     var body: some View {
+        
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         HStack(spacing: 17) {

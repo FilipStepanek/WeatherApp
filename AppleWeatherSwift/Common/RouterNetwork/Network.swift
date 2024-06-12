@@ -32,7 +32,7 @@ class Network {
     }
     
     func request<T: Decodable>(router: Router) async throws -> T {
-        print("---\(try? router.asRequest())")
+        Logger.networking.debug("---\(String(describing: try? router.asRequest()))")
         
         let (data, response) = try await session.data(for: router.asRequest())
         

@@ -44,10 +44,10 @@ struct ForecastViewContent: View {
                             Section(header: ForecastHeaderInfoView(dayIndex: dayIndex)
                             ) {
                                 if dayIndex == 0 {
-                                    ForecastDetailNowView(weatherNow: weatherNow)
+                                    ForecastDetailView(weatherData: weatherNow)
                                 }
                                 ForEach(forecasts, id: \.date) { forecast in
-                                    ForecastDetailView(weather: forecast)
+                                    ForecastDetailView(weatherData: forecast)
                                 }
                             }
                         }
