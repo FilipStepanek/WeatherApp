@@ -58,7 +58,7 @@ struct TodayViewContent: View {
             TodayAnimationBackgroundView(weather: weather)
         )
         .sheet(isPresented: $viewModel.isShareSheetPresented) {
-            ShareSheetView(activityItems: [URL(string: Constants.openWeatherMapURL)])
+            ShareSheetView(activityItems: [URL(string: Constants.openWeatherMapURL) as Any])
                 .presentationDetents([.medium, .large])
         }
     }

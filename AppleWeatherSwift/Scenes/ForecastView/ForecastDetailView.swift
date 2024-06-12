@@ -102,29 +102,25 @@ struct ForecastDetailView: View {
     }
 }
 
-//#if DEBUG
-//struct ForecastDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let mockForecastResponse = ForecastResponse.ListResponse(
-//            date: 1702749600,
-//            main: ForecastResponse.MainResponseForecast(temp: 30),
-//            weather: [ForecastResponse.WeatherResponseForecast(icon: "01d")]
-//        )
-//        
-//        let mockCurrentResponse = CurrentResponse(
-//            coord: CurrentResponse.CoordinatesResponse(lon: 0, lat: 0),
-//            weather: [CurrentResponse.WeatherResponse(id: 800, main: "Clear", description: "clear sky", icon: "01d")],
-//            main: CurrentResponse.MainResponse(temp: 25, pressure: 1013, humidity: 60),
-//            name: "Sample City",
-//            wind: CurrentResponse.WindResponse(speed: 5.0, deg: 180),
-//            sys: CurrentResponse.CountryName(country: "Sample Country"),
-//            rain: nil
-//        )
-//
-//        return Group {
-//            ForecastDetailView(weatherData: mockForecastResponse)
-//            ForecastDetailView(weatherData: mockCurrentResponse)
-//        }
-//    }
-//}
-//#endif
+struct MockWeatherData: WeatherData {
+    var temperature: Double
+    var icon: String
+    var weatherInfo: String
+    var dateInfo: String
+}
+
+struct ForecastDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ForecastDetailView(weatherData: MockWeatherData(temperature: 22.0, icon: "01d", weatherInfo: "Clear Sky", dateInfo: "Now"))
+                .previewLayout(.sizeThatFits)
+                .padding()
+                .previewDisplayName("Current Weather")
+
+            ForecastDetailView(weatherData: MockWeatherData(temperature: 18.0, icon: "03d", weatherInfo: "Partly Cloudy", dateInfo: "Tomorrow"))
+                .previewLayout(.sizeThatFits)
+                .padding()
+                .previewDisplayName("Forecast Weather")
+        }
+    }
+}
