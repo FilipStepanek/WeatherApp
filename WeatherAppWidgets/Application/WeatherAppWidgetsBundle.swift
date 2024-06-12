@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 import Factory
+import Shared
 
 @main
 struct WeatherAppWidgetsBundle: WidgetBundle {

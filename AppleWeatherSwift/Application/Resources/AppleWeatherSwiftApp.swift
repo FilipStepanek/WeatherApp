@@ -8,6 +8,7 @@
 import SwiftUI
 import Factory
 import OSLog
+import Shared
 
 @main
 @MainActor

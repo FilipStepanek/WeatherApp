@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shared 
 
 struct TodayAnimationBackgroundView: View {
     let endRadiusSize = 450

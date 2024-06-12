@@ -8,6 +8,7 @@
 import Foundation
 import Network
 import OSLog
+import WeatherAppFramework
 
 class Network {
     static let shared = Network()

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct ForecastViewContent: View {
     let weather: ForecastResponse

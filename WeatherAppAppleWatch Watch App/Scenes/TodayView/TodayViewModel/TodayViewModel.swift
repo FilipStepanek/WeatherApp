@@ -8,6 +8,7 @@
 import Combine
 import CoreLocation
 import Factory
+import Shared
 
 @MainActor
 final class TodayViewModel: ObservableObject {

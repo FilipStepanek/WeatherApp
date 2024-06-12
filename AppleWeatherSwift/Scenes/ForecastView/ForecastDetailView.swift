@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shared 
 
 protocol WeatherData {
     var temperature: Double { get }
@@ -101,29 +102,29 @@ struct ForecastDetailView: View {
     }
 }
 
-#if DEBUG
-struct ForecastDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let mockForecastResponse = ForecastResponse.ListResponse(
-            date: 1702749600,
-            main: ForecastResponse.MainResponseForecast(temp: 30),
-            weather: [ForecastResponse.WeatherResponseForecast(icon: "01d")]
-        )
-        
-        let mockCurrentResponse = CurrentResponse(
-            coord: CurrentResponse.CoordinatesResponse(lon: 0, lat: 0),
-            weather: [CurrentResponse.WeatherResponse(id: 800, main: "Clear", description: "clear sky", icon: "01d")],
-            main: CurrentResponse.MainResponse(temp: 25, pressure: 1013, humidity: 60),
-            name: "Sample City",
-            wind: CurrentResponse.WindResponse(speed: 5.0, deg: 180),
-            sys: CurrentResponse.CountryName(country: "Sample Country"),
-            rain: nil
-        )
-
-        return Group {
-            ForecastDetailView(weatherData: mockForecastResponse)
-            ForecastDetailView(weatherData: mockCurrentResponse)
-        }
-    }
-}
-#endif
+//#if DEBUG
+//struct ForecastDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let mockForecastResponse = ForecastResponse.ListResponse(
+//            date: 1702749600,
+//            main: ForecastResponse.MainResponseForecast(temp: 30),
+//            weather: [ForecastResponse.WeatherResponseForecast(icon: "01d")]
+//        )
+//        
+//        let mockCurrentResponse = CurrentResponse(
+//            coord: CurrentResponse.CoordinatesResponse(lon: 0, lat: 0),
+//            weather: [CurrentResponse.WeatherResponse(id: 800, main: "Clear", description: "clear sky", icon: "01d")],
+//            main: CurrentResponse.MainResponse(temp: 25, pressure: 1013, humidity: 60),
+//            name: "Sample City",
+//            wind: CurrentResponse.WindResponse(speed: 5.0, deg: 180),
+//            sys: CurrentResponse.CountryName(country: "Sample Country"),
+//            rain: nil
+//        )
+//
+//        return Group {
+//            ForecastDetailView(weatherData: mockForecastResponse)
+//            ForecastDetailView(weatherData: mockCurrentResponse)
+//        }
+//    }
+//}
+//#endif

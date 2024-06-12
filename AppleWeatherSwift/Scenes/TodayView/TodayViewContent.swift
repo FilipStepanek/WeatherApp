@@ -7,6 +7,7 @@
 
 import SwiftUI
 import OSLog
+import Shared
 
 struct TodayViewContent: View {
     
