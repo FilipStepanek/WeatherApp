@@ -83,7 +83,7 @@ struct TodayViewContent: View {
                     .modifier(ContentModifier())
                     .padding(.vertical, 8)
         
-        Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+       viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? "")
             .resizable()
             .scaledToFit()
             .aspectRatio(contentMode: .fit)

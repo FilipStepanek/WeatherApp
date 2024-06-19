@@ -69,7 +69,7 @@ struct ForecastDetailView: View {
                     .frame(maxWidth: 35, maxHeight: 35)
                     .cornerRadius(35)
                     .foregroundColor(.iconBase)
-                Image(WeatherManagerExtension().getImageNameFromForecastIcon(icon: weatherData.icon))
+                WeatherManagerExtension().getImageNameFromForecastIcon(icon: weatherData.icon)
                     .imageSize()
                 
             }
