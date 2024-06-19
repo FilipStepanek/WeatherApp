@@ -45,6 +45,9 @@
 		85412E242B83B2FE000EB544 /* Image+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851CCCC22B7F46830019BDEB /* Image+App.swift */; };
 		85412E272B83B644000EB544 /* WeatherManagerExtensionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412E262B83B644000EB544 /* WeatherManagerExtensionWidget.swift */; };
 		85412E282B83B671000EB544 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 85C0C90D2B0FD01D00733E82 /* Localizable.xcstrings */; };
+		8543F80D2C22ECAB00BAD1BE /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 8543F80C2C22ECAB00BAD1BE /* Shared */; };
+		8543F80F2C22ECB500BAD1BE /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 8543F80E2C22ECB500BAD1BE /* Shared */; };
+		8543F8112C22ECC700BAD1BE /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 8543F8102C22ECC700BAD1BE /* Shared */; };
 		857417F62B95B04800E428B8 /* ExtensionDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B306402B8DBC5F00D3DD7D /* ExtensionDouble.swift */; };
 		857AC6AD2AF22F0B00C4906F /* AppleWeatherSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AC6AC2AF22F0B00C4906F /* AppleWeatherSwiftApp.swift */; };
 		857AC6AF2AF22F0B00C4906F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AC6AE2AF22F0B00C4906F /* ContentView.swift */; };
@@ -113,9 +116,6 @@
 		85D47C242BA185B900F9B53C /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D47C232BA185B900F9B53C /* ExtensionDate.swift */; };
 		85D47C2C2BA42FCB00F9B53C /* WeatherManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D47C2A2BA42FCB00F9B53C /* WeatherManagerExtension.swift */; };
 		85D47C2E2BA43E9B00F9B53C /* ExtensionTemperatureLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D47C2D2BA43E9B00F9B53C /* ExtensionTemperatureLogic.swift */; };
-		85DA427E2C19E7EE0051AC91 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 85DA427D2C19E7EE0051AC91 /* Shared */; };
-		85DA42802C19E7F40051AC91 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 85DA427F2C19E7F40051AC91 /* Shared */; };
-		85DA42822C19E7F90051AC91 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 85DA42812C19E7F90051AC91 /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +210,7 @@
 		85412DF32B826D22000EB544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85412DF52B826D22000EB544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85412E262B83B644000EB544 /* WeatherManagerExtensionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerExtensionWidget.swift; sourceTree = "<group>"; };
+		8543F80B2C22EC7D00BAD1BE /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Shared; sourceTree = "<group>"; };
 		857AC6A92AF22F0B00C4906F /* AppleWeatherSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleWeatherSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857AC6AC2AF22F0B00C4906F /* AppleWeatherSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWeatherSwiftApp.swift; sourceTree = "<group>"; };
 		857AC6AE2AF22F0B00C4906F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -270,7 +271,6 @@
 		85D47C232BA185B900F9B53C /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		85D47C2A2BA42FCB00F9B53C /* WeatherManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerExtension.swift; sourceTree = "<group>"; };
 		85D47C2D2BA43E9B00F9B53C /* ExtensionTemperatureLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTemperatureLogic.swift; sourceTree = "<group>"; };
-		85DA427C2C19E19C0051AC91 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Shared; path = ../Shared; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,7 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B73FE72BB71EEC001AF499 /* Factory in Frameworks */,
-				85DA42802C19E7F40051AC91 /* Shared in Frameworks */,
+				8543F80F2C22ECB500BAD1BE /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B73FE92BB71EF7001AF499 /* Factory in Frameworks */,
-				85DA42822C19E7F90051AC91 /* Shared in Frameworks */,
+				8543F80D2C22ECAB00BAD1BE /* Shared in Frameworks */,
 				85412DE92B826D21000EB544 /* SwiftUI.framework in Frameworks */,
 				85412DE72B826D21000EB544 /* WidgetKit.framework in Frameworks */,
 			);
@@ -299,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B73FE52BB71C9E001AF499 /* Factory in Frameworks */,
-				85DA427E2C19E7EE0051AC91 /* Shared in Frameworks */,
+				8543F8112C22ECC700BAD1BE /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +554,7 @@
 		857AC6A02AF22F0A00C4906F = {
 			isa = PBXGroup;
 			children = (
+				8543F80B2C22EC7D00BAD1BE /* Shared */,
 				857AC6AB2AF22F0B00C4906F /* AppleWeatherSwift */,
 				852DB8C12B74B3AC00596FFB /* WeatherAppAppleWatch Watch App */,
 				857AC6C62AF22F0C00C4906F /* AppleWeatherSwiftUITests */,
@@ -561,7 +562,6 @@
 				852DB8DC2B74B3AE00596FFB /* WeatherAppAppleWatch Watch AppUITests */,
 				85412DEA2B826D21000EB544 /* WeatherAppWidgets */,
 				85412DE52B826D21000EB544 /* Frameworks */,
-				85DA427C2C19E19C0051AC91 /* Shared */,
 				857AC6AA2AF22F0B00C4906F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -856,7 +856,7 @@
 			name = "WeatherAppAppleWatch Watch App";
 			packageProductDependencies = (
 				85B73FE62BB71EEC001AF499 /* Factory */,
-				85DA427F2C19E7F40051AC91 /* Shared */,
+				8543F80E2C22ECB500BAD1BE /* Shared */,
 			);
 			productName = "WeatherAppAppleWatch Watch App";
 			productReference = 852DB8C02B74B3AC00596FFB /* WeatherAppAppleWatch Watch App.app */;
@@ -877,7 +877,7 @@
 			name = WeatherAppWidgetsExtension;
 			packageProductDependencies = (
 				85B73FE82BB71EF7001AF499 /* Factory */,
-				85DA42812C19E7F90051AC91 /* Shared */,
+				8543F80C2C22ECAB00BAD1BE /* Shared */,
 			);
 			productName = WeatherAppWidgetsExtension;
 			productReference = 85412DE42B826D21000EB544 /* WeatherAppWidgetsExtension.appex */;
@@ -902,7 +902,7 @@
 			name = AppleWeatherSwift;
 			packageProductDependencies = (
 				85B73FE42BB71C9E001AF499 /* Factory */,
-				85DA427D2C19E7EE0051AC91 /* Shared */,
+				8543F8102C22ECC700BAD1BE /* Shared */,
 			);
 			productName = AppleWeatherSwift;
 			productReference = 857AC6A92AF22F0B00C4906F /* AppleWeatherSwift.app */;
@@ -1663,6 +1663,18 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8543F80C2C22ECAB00BAD1BE /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
+		8543F80E2C22ECB500BAD1BE /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
+		8543F8102C22ECC700BAD1BE /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
 		85B73FE42BB71C9E001AF499 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 85B73FE32BB71C9E001AF499 /* XCRemoteSwiftPackageReference "Factory" */;
@@ -1677,18 +1689,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85B73FE32BB71C9E001AF499 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
-		};
-		85DA427D2C19E7EE0051AC91 /* Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shared;
-		};
-		85DA427F2C19E7F40051AC91 /* Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shared;
-		};
-		85DA42812C19E7F90051AC91 /* Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
