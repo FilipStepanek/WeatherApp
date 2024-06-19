@@ -96,7 +96,7 @@ struct TodayViewContent: View {
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         VStack(alignment: .leading, spacing: -4) {
-            Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+            viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? "")
                 .resizable()
                 .scaledToFit()
                 .aspectRatio(contentMode: .fit)
