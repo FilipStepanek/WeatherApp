@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 // MARK: - Extension country code to full name
 extension String {

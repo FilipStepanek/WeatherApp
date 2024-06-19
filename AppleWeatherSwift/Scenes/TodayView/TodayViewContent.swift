@@ -39,7 +39,6 @@ struct TodayViewContent: View {
                         rectangles
                             .modifier(ConditionalScrollTransition())
                     }
-                    .padding(.vertical)
                 }
                 .frame(height: proxy.size.height)
             }

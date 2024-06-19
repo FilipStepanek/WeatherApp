@@ -51,13 +51,12 @@ extension CurrentResponse: WeatherData {
     }
 }
 
-
 struct ForecastDetailView: View {
     
     let weatherData: WeatherData
     
     var body: some View {
-    
+        
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
         HStack(
@@ -122,12 +121,12 @@ struct ForecastDetailView_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Current Weather")
-
+            
             ForecastDetailView(weatherData: MockWeatherData(temperature: 20.0, icon: "02d", weatherInfo: "Partly Cloudy", dateInfo: "Tomorrow"))
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Forecast Weather")
-
+            
             ForecastDetailView(weatherData: MockWeatherData(temperature: 15.0, icon: "10d", weatherInfo: "Rainy", dateInfo: "Next Week"))
                 .previewLayout(.sizeThatFits)
                 .padding()

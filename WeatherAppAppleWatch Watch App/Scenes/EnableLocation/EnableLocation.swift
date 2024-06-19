@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocationUI
 import Factory
 
 struct EnableLocationView: View {
@@ -53,7 +52,6 @@ struct EnableLocationView: View {
                         
                         Spacer()
                     }
-                    
                 }
                 .padding()
                 .padding(.top, 5)

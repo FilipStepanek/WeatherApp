@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocationUI
-
 
 struct ContentView: View {
     

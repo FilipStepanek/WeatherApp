@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ErrorFetchingDataView: View {
-    
-    // TODO: update
-    @StateObject private var viewModelToday = TodayViewModel()
-    @StateObject private var viewModelForecast = ForecastViewModel()
+    let onRefreshAction: () -> Void
     
     var body: some View {
         ScrollView{
@@ -36,10 +33,7 @@ struct ErrorFetchingDataView: View {
                         Spacer()
                         
                         Button(action: {
-                            
-                            Task {
-                                await viewModelForecast.onRefresh
-                            }
+                            onRefreshAction()
                         }) {
                             Image.systemReload
                                 .cornerRadius(40)
@@ -63,6 +57,6 @@ struct ErrorFetchingDataView: View {
 
 #if DEBUG
 #Preview {
-    ErrorFetchingDataView()
+    ErrorFetchingDataView(onRefreshAction: {})
 }
 #endif

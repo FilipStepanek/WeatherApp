@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Shared 
+import Shared
 
 protocol WeatherData {
     var temperature: Double { get }
@@ -116,7 +116,7 @@ struct ForecastDetailView_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Current Weather")
-
+            
             ForecastDetailView(weatherData: MockWeatherData(temperature: 18.0, icon: "03d", weatherInfo: "Partly Cloudy", dateInfo: "Tomorrow"))
                 .previewLayout(.sizeThatFits)
                 .padding()

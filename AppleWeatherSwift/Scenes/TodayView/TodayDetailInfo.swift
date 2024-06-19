@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Shared 
+import Shared
 
 struct TodayDetailInfo: View {
     
@@ -14,7 +14,7 @@ struct TodayDetailInfo: View {
     
     var body: some View {
         
-        Grid (alignment: .leading, 
+        Grid (alignment: .leading,
               horizontalSpacing: 0,
               verticalSpacing: 8)
         {
@@ -28,7 +28,7 @@ struct TodayDetailInfo: View {
                 TodayDetailInfoLineDirection
             }
         }
- 
+        
     }
     
     @ViewBuilder

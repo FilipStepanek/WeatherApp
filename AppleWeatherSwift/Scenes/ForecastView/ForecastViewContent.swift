@@ -10,7 +10,6 @@ import Shared
 
 struct ForecastViewContent: View {
     
-    // TODO: update
     @EnvironmentObject private var viewModel: ForecastViewModel
     
     let weather: ForecastResponse

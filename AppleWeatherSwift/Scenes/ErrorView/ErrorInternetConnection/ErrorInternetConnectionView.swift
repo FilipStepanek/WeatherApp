@@ -43,8 +43,8 @@ struct ErrorInternetConnectionView: View {
             Spacer()
             
         }
-        .padding(.top, 16)
-        .padding()
+        .padding(.top, 0)
+        .padding(.horizontal)
         .background(
             ErrorAnimationBackgroundView()
         )

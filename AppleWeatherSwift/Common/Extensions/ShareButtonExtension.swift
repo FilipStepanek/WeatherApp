@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 public extension Button {
     func presentShareModalOnTap(

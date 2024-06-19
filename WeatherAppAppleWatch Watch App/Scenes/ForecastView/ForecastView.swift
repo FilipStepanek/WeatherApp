@@ -21,7 +21,9 @@ struct ForecastView: View {
             case .success(let forecastResponse, let currentResponse):
                 ForecastViewContent(weather: forecastResponse, weatherNow: currentResponse)
             case .error:
-                ErrorFetchingDataView()
+                ErrorFetchingDataView {
+                    viewModelForecast.onRefresh()
+                }
             case .errorNetwork:
                 ErrorInternetConnectionView {
                     viewModelForecast.onRefresh()

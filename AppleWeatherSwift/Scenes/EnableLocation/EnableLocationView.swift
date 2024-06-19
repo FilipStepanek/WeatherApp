@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocationUI
 import Factory
 
 struct EnableLocationView: View {

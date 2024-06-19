@@ -15,7 +15,7 @@ final class ForecastViewModel: ObservableObject {
     @Published var shouldReloaded = false
     @Published private(set) var state: State = .loading
     
-    //MARK: - Injected weatherManager via Factory package manager - Dependency Injection 
+    //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
     @Injected(\.weatherManager) private var weatherManager
     @Injected(\.locationManager) private var locationManager
     
@@ -55,7 +55,7 @@ final class ForecastViewModel: ObservableObject {
                 let forecastResponse = try await weatherManager.getForecastWeather(
                     latitude: location.latitude,
                     longitude: location.longitude)
-                                
+                
                 let currentResponse = try await weatherManager.getCurrentWeather(
                     latitude: location.latitude,
                     longitude: location.longitude)

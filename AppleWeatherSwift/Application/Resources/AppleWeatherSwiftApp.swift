@@ -13,19 +13,15 @@ import Shared
 @main
 @MainActor
 struct AppleWeatherSwiftApp: App {
-    // Use @Environment to track the scene phase
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
         WindowGroup {
-            // Inject the ViewModels into ContentView
             ContentView()
-            // Add scene phase handling
                 .onChange(of: scenePhase) { newScenePhase in
                     switch newScenePhase {
                     case .active:
                         Logger.viewCycle.info("App is active")
-                        
                     case .inactive, .background:
                         Logger.viewCycle.info("App is in background")
                     @unknown default:

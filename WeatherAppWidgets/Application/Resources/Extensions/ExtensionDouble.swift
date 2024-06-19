@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 // MARK: - Extension for rounded Double to 0 decimals
 extension Double {

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TodayView: View {
     
-    // TODO: update
     @StateObject private var viewModelToday = TodayViewModel()
     
     var body: some View {
@@ -22,7 +21,9 @@ struct TodayView: View {
             case .succes(let currentResponse):
                 TodayViewContent(weather: currentResponse)
             case .error:
-                ErrorFetchingDataView()
+                ErrorFetchingDataView {
+                    viewModelToday.onRefresh()
+                }
             case .errorNetwork:
                 ErrorInternetConnectionView {
                     viewModelToday.onRefresh()

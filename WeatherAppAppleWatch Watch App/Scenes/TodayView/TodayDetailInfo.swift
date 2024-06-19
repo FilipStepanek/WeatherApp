@@ -20,12 +20,12 @@ struct TodayDetailInfo: View {
             ){
                 todayDetailInfoLineOne
                 
-                .padding(.vertical, 10)
+                    .padding(.vertical, 10)
                 
                 todayDetailInfoLineTwo
                 
                 todayDetailInfoLineThree
-               
+                
             }
             .background(.mainBackground)
         }
@@ -94,7 +94,8 @@ struct TodayDetailInfo: View {
                 Text("wind.title")
                     .modifier(ContentSmallInfoModifier())
             }
-        }    }
+        }
+    }
     
     @ViewBuilder
     var todayDetailInfoLineThree: some View {

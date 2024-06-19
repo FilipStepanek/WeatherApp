@@ -31,7 +31,9 @@ struct ErrorInternetConnectionView: View {
                 HStack {
                     Spacer()
                     
-                    Button(action: onRefreshTap) {
+                    Button(
+                        action: onRefreshTap
+                    ) {
                         
                         Image.systemReload
                             .cornerRadius(40)

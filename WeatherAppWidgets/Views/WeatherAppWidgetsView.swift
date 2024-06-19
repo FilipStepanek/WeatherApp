@@ -38,5 +38,4 @@ struct WeatherEntryView: View {
         let temperature = Measurement(value: entry.temperature, unit: UnitTemperature.celsius)
         return measurementFormatter.string(from: temperature)
     }
-    
 }
