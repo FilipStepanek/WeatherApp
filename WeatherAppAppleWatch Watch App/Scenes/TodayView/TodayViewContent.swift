@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Shared
 
 struct TodayViewContent: View {
     
-    var weatherManager = WeatherManager()
-    var weatherManagerExtension = WeatherManagerExtension()
-    var weather: CurrentResponse
+    @EnvironmentObject private var viewModel: TodayViewModel
     @State private var isShowingForecast = false
+    
+    let weather: CurrentResponse
     
     var body: some View {
         VStack {
@@ -76,14 +77,13 @@ struct TodayViewContent: View {
     @ViewBuilder
     var todayInformation: some View {
         
-        let temperature = Int(weather.main.temp.rounded())
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
-        Text(weather.name + ", " + (countryName(countryCode: weather.sys.country) ?? "Unknown"))
-            .modifier(ContentModifier())
-            .padding(.vertical, 8)
+        Text((weather.name ) + ", " + (String().countryName(countryCode: weather.sys.country ) ?? "Unknown"))
+                    .modifier(ContentModifier())
+                    .padding(.vertical, 8)
         
-        Image(weatherManagerExtension.getImageNameForWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+        Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
             .resizable()
             .scaledToFit()
             .aspectRatio(contentMode: .fit)
@@ -105,7 +105,9 @@ struct TodayViewContent: View {
         return measurementFormatter.string(from: temperature)
     }
 }
-#Preview {
-    TodayViewContent(weather: previewWeather)
-}
 
+#if DEBUG
+#Preview {
+    TodayViewContent(weather: .previewMock)
+}
+#endif

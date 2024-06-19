@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayView: View {
-    
+  
     @StateObject private var viewModelToday = TodayViewModel()
     
     var body: some View {
@@ -17,25 +17,25 @@ struct TodayView: View {
             case .loading:
                 LoadingView()
             case .missingLocation:
-                EnableLocationView(locationManager: viewModelToday.locationManager)
-            case .succes(let currentResponse):
-                TodayViewContent(weatherManager: WeatherManager(), weather: currentResponse)
+                EnableLocationView()
+            case .success(let currentResponse):
+                TodayViewContent(weather: currentResponse)
             case .error:
-                ErrorFetchingDataView()
+                ErrorFetchingDataView {
+                    viewModelToday.onRefresh()
+                }
             case .errorNetwork:
                 ErrorInternetConnectionView {
                     viewModelToday.onRefresh()
                 }
             }
         }
-        .task {
-            viewModelToday.initialLoad()
-        }
+        .environmentObject(viewModelToday)
     }
 }
 
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
-    }
+#if DEBUG
+#Preview {
+    TodayView()
 }
+#endif

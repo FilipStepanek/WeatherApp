@@ -7,6 +7,8 @@
 
 import Combine
 import CoreLocation
+import Factory
+import Shared
 
 @MainActor
 final class TodayViewModel: ObservableObject {
@@ -15,59 +17,61 @@ final class TodayViewModel: ObservableObject {
     @Published private(set) var state: State = .loading
     @Published var isConnected = true
     
-    private(set) var locationManager = LocationManager()
-    private var weatherManager = WeatherManager()
+    //MARK: - Injected weatherManager via Factory package manager - Dependency Injection
+    @Injected(\.weatherManager) private var weatherManager
+    @Injected(\.locationManager) private var locationManager
+   
+    var weatherManagerExtension = WeatherManagerExtension()
     private var cancellables = Set<AnyCancellable>()
-    private var loadingTask: Task<Void, Never>?
     
     init() {
-        setupBinding()
-    }
-    
-    func initialLoad() {
-        guard locationManager.status == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-    }
-    
-    func onRefresh() {
-        guard locationManager.status == .locationGranted else {
-            state = .missingLocation
-            
-            return
-        }
-        guard let location = locationManager.location else {
-            
-            return
-        }
-        getWeather(for: location)
+           setupBinding()
     }
     
     func setupBinding() {
-        locationManager.$location
-            .compactMap { $0 }
-            .sink { location in
-                print(location)
-                self.getWeather(for: location)
+        locationManager
+            .location
+            .compactMap{$0}
+            .sink { [weak self] location in
+                self?.getWeather(for: location)
+            }
+            .store(in: &cancellables)
+        
+        locationManager
+            .authorizationStatus
+            .sink { [weak self] status in
+                switch status {
+                case.locationGranted:
+                    self?.locationManager.requestLocation()
+                default:
+                    self?.state = .missingLocation
+                }
             }
             .store(in: &cancellables)
     }
     
     func getWeather(for location: CLLocationCoordinate2D) {
-        loadingTask = Task {
+        state = .loading
+        
+        Task {
             do {
-                let response = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                let response = try await weatherManager.getCurrentWeather(
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                )
                 state = .succes(response)
             } catch {
-                if case GHError.noInternetConnection = error {
+                if case NetworkError.noInternetConnection = error {
                     return state = .errorNetwork(error.localizedDescription)
                 } else {
                     return state = .error(error.localizedDescription)
                 }
             }
         }
+    }
+    
+    func onRefresh() {
+        locationManager.requestLocation()
     }
 }
 

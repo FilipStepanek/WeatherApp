@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import CoreLocationUI
+import Factory
 
 struct EnableLocationView: View {
     
-    let locationManager: LocationManager
+    @Injected(\.locationManager) var locationManager
     
     var body: some View {
         ZStack {
@@ -28,10 +28,10 @@ struct EnableLocationView: View {
                     
                     Text("enable.Location.Title")
                         .modifier(TitleModifier())
-                        .foregroundColor(.mainTextWatch)
+                        .foregroundColor(.mainText)
                     
                     Text("permission.Message")
-                        .foregroundColor(.mainTextWatch)
+                        .foregroundColor(.mainText)
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
                     
@@ -39,7 +39,7 @@ struct EnableLocationView: View {
                         Spacer()
                         
                         Button(action: {
-                            locationManager.requestLocationRemission()
+                            locationManager.requestLocationPermission()
                             print("Button pressed Enable location")
                             
                         }) {
@@ -52,7 +52,6 @@ struct EnableLocationView: View {
                         
                         Spacer()
                     }
-                    
                 }
                 .padding()
                 .padding(.top, 5)
@@ -61,9 +60,8 @@ struct EnableLocationView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    EnableLocationView(locationManager: LocationManager())
+    EnableLocationView()
 }
-
-
-
+#endif

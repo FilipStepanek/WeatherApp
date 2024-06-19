@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ErrorFetchingDataView: View {
-    
-    @StateObject private var viewModelToday = TodayViewModel()
-    @StateObject private var viewModelForecast = ForecastViewModel()
+    let onRefreshAction: () -> Void
     
     var body: some View {
         ScrollView{
@@ -35,15 +33,11 @@ struct ErrorFetchingDataView: View {
                         Spacer()
                         
                         Button(action: {
-                            print("Button pressed Reload")
-                            
-                            Task {
-                                await viewModelForecast.initialLoad()
-                            }
+                            onRefreshAction()
                         }) {
                             Image.systemReload
                                 .cornerRadius(40)
-                                .accentColor(.tabBar)
+                                .accentColor(.reloadBackground)
                             
                         }
                         .buttonStyle(ReloadButton())
@@ -61,6 +55,8 @@ struct ErrorFetchingDataView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    ErrorFetchingDataView()
+    ErrorFetchingDataView(onRefreshAction: {})
 }
+#endif

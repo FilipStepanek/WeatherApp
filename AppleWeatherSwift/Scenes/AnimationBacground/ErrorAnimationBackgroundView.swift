@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import Foundation
 
 struct ErrorAnimationBackgroundView: View {
@@ -52,6 +50,8 @@ struct ErrorAnimationBackgroundView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ErrorAnimationBackgroundView()
 }
+#endif

@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Shared
 
 struct ForecastViewContent: View {
     
-    @StateObject private var viewModel = ForecastViewModel()
+    @EnvironmentObject private var viewModel: ForecastViewModel
     
-    var weather: ForecastResponse
-    var weatherNow: CurrentResponse
+    let weather: ForecastResponse
+    let weatherNow: CurrentResponse
     let headerText = String(localized: "forecast.header.title")
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     
@@ -50,10 +51,10 @@ struct ForecastViewContent: View {
                             Section(header: ForecastHeaderInfoView(dayIndex: dayIndex)
                             ) {
                                 if dayIndex == 0 {
-                                    ForecastDetailNowView(weatherNow: weatherNow)
+                                    ForecastDetailView(weatherData: weatherNow)
                                 }
                                 ForEach(forecasts, id: \.date) { forecast in
-                                    ForecastDetailView(weather: forecast)
+                                    ForecastDetailView(weatherData: forecast)
                                 }
                             }
                         }
@@ -70,8 +71,11 @@ struct ForecastViewContent: View {
     }
 }
 
-struct ForecastViewContent_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastViewContent(weather: previewForecast, weatherNow: previewWeather)
-    }
+#if DEBUG
+#Preview {
+    ForecastViewContent(
+        weather: .previewMock,
+        weatherNow: .previewMock
+    )
 }
+#endif

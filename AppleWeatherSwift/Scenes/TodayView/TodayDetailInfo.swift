@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import Shared
 
 struct TodayDetailInfo: View {
     
-    var weather: CurrentResponse
+    let weather: CurrentResponse
     
     var body: some View {
         
-        Grid (alignment: .leading, horizontalSpacing: 0, verticalSpacing: 0) {
+        Grid (alignment: .leading,
+              horizontalSpacing: 0,
+              verticalSpacing: 8)
+        {
             GridRow {
                 TodayDetailInfoLineHumidity
                 TodayDetailInfoLinePrecipation
@@ -24,7 +28,7 @@ struct TodayDetailInfo: View {
                 TodayDetailInfoLineDirection
             }
         }
- 
+        
     }
     
     @ViewBuilder
@@ -121,9 +125,8 @@ struct TodayDetailInfo: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    TodayDetailInfo(weather: previewWeather)
+    TodayDetailInfo(weather: .previewMock)
 }
-
-
-
+#endif

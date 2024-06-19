@@ -65,6 +65,28 @@
                ReferencedContainer = "container:AppleWeatherSwift.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "857AC6C22AF22F0C00C4906F"
+               BuildableName = "AppleWeatherSwiftUITests.xctest"
+               BlueprintName = "AppleWeatherSwiftUITests"
+               ReferencedContainer = "container:AppleWeatherSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "857AC6B82AF22F0C00C4906F"
+               BuildableName = "AppleWeatherSwiftTests.xctest"
+               BlueprintName = "AppleWeatherSwiftTests"
+               ReferencedContainer = "container:AppleWeatherSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

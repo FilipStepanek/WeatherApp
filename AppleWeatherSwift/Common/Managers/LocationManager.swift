@@ -7,73 +7,114 @@
 
 import Foundation
 import CoreLocation
+import Combine
+import OSLog
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    let manager = CLLocationManager()
+enum Status {
+    case locationGranted
+    case unknown
+    case denied
+    case notDetermined
+}
+
+protocol LocationManaging {
+    var location: PassthroughSubject<CLLocationCoordinate2D?, Never> { get }
+    var authorizationStatus: PassthroughSubject<Status, Never> { get }
+    var lastLocation: CLLocation? { get }
     
-    @Published var location: CLLocationCoordinate2D?
-    @Published var isLoading = false
-    @Published var status: Status = .unknown
-    
-    enum Status {
-        case locationGranted
-        case unknown
-        case denied
-    }
+    func requestLocation()
+    func requestLocationPermission()
+}
+
+class LocationManager: NSObject, LocationManaging, CLLocationManagerDelegate {
+    private let manager = CLLocationManager()
+    private(set) var lastLocation: CLLocation?
+
+    var location: PassthroughSubject<CLLocationCoordinate2D?, Never> = .init()
+    var authorizationStatus: PassthroughSubject<Status, Never> = .init()
     
     override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        startMonitoringLocation()
     }
     
     // MARK: - Request Location
     func requestLocation() {
-        isLoading = true
+        Logger.networking.debug("Requested location")
         manager.requestLocation()
     }
+    
     // MARK: - Request Location Permission
-    func requestLocationRemission() {
+    func requestLocationPermission() {
+        Logger.networking.debug("Request Location Permission")
         manager.requestWhenInUseAuthorization()
     }
     
+    // MARK: - Location Manager Delegate Methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first?.coordinate
-        isLoading = false
+        Logger.networking.debug("Updated locations: \(locations)")
+        if let newLocation = locations.last {
+            // If the new location is significantly different from the previous one, send it
+            if lastLocation == nil || newLocation.distance(from: lastLocation!) > 100 {
+                lastLocation = newLocation
+                location.send(newLocation.coordinate)
+            }
+        }
+    }
+    
+    func handleStatus(status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            Logger.networking.info("Location authorization granted")
+            authorizationStatus.send(.locationGranted)
+        case .denied, .restricted:
+            Logger.networking.info("Location authorization denied or restricted")
+            authorizationStatus.send(.denied)
+        case .notDetermined:
+            Logger.networking.info("Location authorization not determined")
+            authorizationStatus.send(.unknown)
+        @unknown default:
+            authorizationStatus.send(.unknown)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse, .authorizedAlways:
-            // Handle authorized status
-            print("Location authorization granted")
-            self.status = .locationGranted
-            requestLocation()
-        case .denied, .restricted:
-            // Handle denied or restricted status
-            print("Location authorization denied or restricted")
-            self.status = .denied
-        case .notDetermined:
-            // Handle not determined status
-            print("Location authorization not determined")
-            self.status = .unknown
-            requestLocation()
-            
-        @unknown default:
-            break
-        }
+        Logger.networking.debug("Authorization status changed to: \(status.rawValue)")
+        handleStatus(status: status)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let clError = error as? CLError {
-            print("Location Manager Error: \(clError.errorCode) - \(clError.localizedDescription)")
+            Logger.networking.info("Location Manager Error: \(clError.errorCode) - \(clError.localizedDescription)")
         } else {
-            print("Generic Location Manager Error: \(error.localizedDescription)")
+            Logger.networking.info("Generic Location Manager Error: \(error.localizedDescription)")
         }
-        isLoading = false
     }
     
-    func stopLocationUpdates() {
-        manager.stopUpdatingLocation()
-    }
+    // MARK: - Smart Location Management
+        private func startMonitoringLocation() {
+            #if os(iOS)
+            if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+                manager.startMonitoringSignificantLocationChanges()
+            } else {
+                manager.startUpdatingLocation()
+            }
+            #elseif os(watchOS)
+            manager.startUpdatingLocation()
+            #endif
+        }
+        
+        func stopMonitoringSignificantLocationChanges() {
+            #if os(iOS)
+            if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+                manager.stopMonitoringSignificantLocationChanges()
+            } else {
+                manager.stopUpdatingLocation()
+            }
+            #elseif os(watchOS)
+            manager.stopUpdatingLocation()
+            #endif
+        }
 }

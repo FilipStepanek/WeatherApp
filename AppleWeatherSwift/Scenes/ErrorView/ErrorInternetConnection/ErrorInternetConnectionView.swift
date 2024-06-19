@@ -10,7 +10,6 @@ import SwiftUI
 struct ErrorInternetConnectionView: View {
     let onRefreshTap: () -> Void
     
-    
     var body: some View {
         
         VStack (
@@ -44,19 +43,16 @@ struct ErrorInternetConnectionView: View {
             Spacer()
             
         }
-        .padding(.top, 16)
-        .padding()
+        .padding(.top, 0)
+        .padding(.horizontal)
         .background(
             ErrorAnimationBackgroundView()
         )
     }
 }
 
+#if DEBUG
 #Preview {
-    ErrorInternetConnectionView() {
-        
-    }
+    ErrorInternetConnectionView(onRefreshTap: {})
 }
-
-
-
+#endif
