@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Shared
 
 struct TodayDetailInfo: View {
     
-    var weather: CurrentResponse
+    let weather: CurrentResponse
     
     var body: some View {
         ScrollView{
@@ -19,12 +20,12 @@ struct TodayDetailInfo: View {
             ){
                 todayDetailInfoLineOne
                 
-                .padding(.vertical, 10)
+                    .padding(.vertical, 10)
                 
                 todayDetailInfoLineTwo
                 
                 todayDetailInfoLineThree
-               
+                
             }
             .background(.mainBackground)
         }
@@ -93,7 +94,8 @@ struct TodayDetailInfo: View {
                 Text("wind.title")
                     .modifier(ContentSmallInfoModifier())
             }
-        }    }
+        }
+    }
     
     @ViewBuilder
     var todayDetailInfoLineThree: some View {
@@ -115,7 +117,8 @@ struct TodayDetailInfo: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    TodayDetailInfo(weather: previewWeather)
+    TodayDetailInfo(weather: .previewMock)
 }
-
+#endif

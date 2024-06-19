@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 // MARK: - Extension country code to full name
 extension String {
@@ -16,4 +15,3 @@ extension String {
         return countryName
     }
 }
-

@@ -10,89 +10,89 @@ import SwiftUI
 
 class WeatherManagerExtension {
     
-    // MARK: - Getting image name for forecast icon
-    func getImageNameForWeatherIcon(icon: String) -> String {
+    // MARK: - Getting image name from current weather icon
+    func getImageNameFromWeatherIcon(icon: String) -> String {
         switch icon {
         case "01d":
-            return "ForecastSun"
+            return "todaySun"
         case "01n":
-            return "ForecastMoon"
+            return "todayMoon"
         case "02d":
-            return "ForecastFewCloudsSun"
+            return "todayFewCloudsSun"
         case "02n":
-            return "ForecastFewCloudsMoon"
+            return "todayFewCloudsMoon"
         case "03d":
-            return "ForecastCloudy"
+            return "todayCloudy"
         case "03n":
-            return "ForecastCloudy"
+            return "todayCloudy"
         case "04d":
-            return "ForecastCloudy"
+            return "todayCloudy"
         case "04n":
-            return "ForecastCloudy"
+            return "todayCloudy"
         case "09d":
-            return "ForecastShowersLight"
+            return "todayShowers"
         case "09n":
-            return "ForecastShowersLight"
+            return "todayShowers"
         case "10d":
-            return "ForecastRain"
+            return "todayRain"
         case "10n":
-            return "ForecastRain"
+            return "todayRain"
         case "11d":
-            return "ForecastThunderstorm"
+            return "todayThunderstorm"
         case "11n":
-            return "ForecastThunderstorm"
+            return "todayThunderstorm"
         case "13d":
-            return "ForecastSnow"
+            return "todaySnow"
         case "13n":
-            return "ForecastSnow"
+            return "todaySnow"
         case "50d":
-            return "ForecastMist"
+            return "todayMist"
         case "50n":
-            return "ForecastMist"
+            return "todayMist"
         default:
             return "defaultImage"
         }
     }
     
-    // MARK: - Getting image name for forecast icon
-    func getImageNameForForecastIcon(icon: String) -> String {
+    // MARK: - Getting image name from forecast icon
+    func getImageNameFromForecastIcon(icon: String) -> String {
         switch icon {
         case "01d":
-            return "ForecastSun"
+            return "forecastSun"
         case "01n":
-            return "ForecastMoon"
+            return "forecastMoon"
         case "02d":
-            return "ForecastFewCloudsSun"
+            return "forecastFewCloudsSun"
         case "02n":
-            return "ForecastFewCloudsMoon"
+            return "forecastFewCloudsMoon"
         case "03d":
-            return "ForecastCloudy"
+            return "forecastCloudy"
         case "03n":
-            return "ForecastCloudy"
+            return "forecastCloudy"
         case "04d":
-            return "ForecastCloudy"
+            return "forecastCloudy"
         case "04n":
-            return "ForecastCloudy"
+            return "forecastCloudy"
         case "09d":
-            return "ForecastShowersLight"
+            return "forecastShowersLight"
         case "09n":
-            return "ForecastShowersLight"
+            return "forecastShowersLight"
         case "10d":
-            return "ForecastRain"
+            return "forecastRain"
         case "10n":
-            return "ForecastRain"
+            return "forecastRain"
         case "11d":
-            return "ForecastThunderstorm"
+            return "forecastThunderstorm"
         case "11n":
-            return "ForecastThunderstorm"
+            return "forecastThunderstorm"
         case "13d":
-            return "ForecastSnow"
+            return "forecastSnow"
         case "13n":
-            return "ForecastSnow"
+            return "forecastSnow"
         case "50d":
-            return "ForecastMist"
+            return "forecastMist"
         case "50n":
-            return "ForecastMist"
+            return "forecastMist"
         default:
             return "defaultImage"
         }

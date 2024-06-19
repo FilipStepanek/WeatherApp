@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 public extension Button {
     func presentShareModalOnTap(
@@ -74,4 +73,3 @@ private struct UIKitActivityView: UIViewControllerRepresentable {
         uiViewController.present(activityViewController, animated: true)
     }
 }
-

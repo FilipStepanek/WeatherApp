@@ -49,6 +49,8 @@ struct ForecastHeaderInfoView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ForecastHeaderInfoView(dayIndex: 0)
 }
+#endif

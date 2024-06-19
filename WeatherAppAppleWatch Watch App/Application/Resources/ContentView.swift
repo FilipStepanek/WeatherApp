@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-
-import SwiftUI
-
 struct ContentView: View {
     var body: some View {
         TodayView()
-        }
     }
+}
+
+#if DEBUG
 #Preview {
     ContentView()
 }
+#endif

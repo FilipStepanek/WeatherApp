@@ -90,14 +90,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Je zamračeno."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s cloudy."
+            "value" : "It’s a cloudy."
           }
         }
       }
@@ -109,14 +109,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Jako vymetýno!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s clear sky."
+            "value" : "Clear skies."
           }
         }
       }
@@ -240,14 +240,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Jenom pár mráčků."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s few clouds."
+            "value" : "It’s a few clouds."
           }
         }
       }
@@ -256,14 +256,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Je mlha!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s fog."
+            "value" : "It’s a fog."
           }
         }
       }
@@ -464,14 +464,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Je ku*** teplo."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s f**hot"
+            "value" : "It’s hot."
           }
         }
       }
@@ -499,14 +499,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Je krásný měsíc."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s nice moon."
+            "value" : "It’s a nice moon."
           }
         }
       }
@@ -526,9 +526,6 @@
           }
         }
       }
-    },
-    "Now" : {
-
     },
     "permission.Message" : {
       "localizations" : {
@@ -583,14 +580,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Prší."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s raining."
+            "value" : "It’s a raining."
           }
         }
       }
@@ -615,14 +612,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Venku jsou přeháňky."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s showers."
+            "value" : "It’s a showers."
           }
         }
       }
@@ -631,14 +628,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Venku sněží. "
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s snowing."
+            "value" : "It’s a snowing."
           }
         }
       }
@@ -653,14 +650,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Je bouřka."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s thunderstorm."
+            "value" : "It’s a thunderstorm."
           }
         }
       }
@@ -670,14 +667,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Venku bouří!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It’s thunderstorm."
+            "value" : "It’s a thunderstorm."
           }
         }
       }

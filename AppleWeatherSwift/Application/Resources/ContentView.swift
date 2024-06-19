@@ -6,11 +6,8 @@
 //
 
 import SwiftUI
-import CoreLocationUI
 
 struct ContentView: View {
-    
-    var weatherManager = WeatherManager()
     
     var body: some View {
         TabView {
@@ -41,4 +38,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-

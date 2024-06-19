@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
-import CoreLocationUI
+import Factory
 
 struct EnableLocationView: View {
-    
-    let locationManager: LocationManager
+    @Injected(\.locationManager) var locationManager
     
     var body: some View {
         VStack (
@@ -31,7 +30,7 @@ struct EnableLocationView: View {
                 .modifier(ErrorInfoModifier())
             
             Button(action: {
-                locationManager.requestLocationRemission()
+                locationManager.requestLocationPermission()
                 print("Button pressed Enable location")
             }) {
                 Text("enable.Location.Button.Title")
@@ -44,12 +43,11 @@ struct EnableLocationView: View {
             
         }
         .padding(.top, 100)
-        
     }
 }
 
+#if DEBUG
 #Preview {
-    EnableLocationView(locationManager: LocationManager())
+    EnableLocationView()
 }
-
-
+#endif

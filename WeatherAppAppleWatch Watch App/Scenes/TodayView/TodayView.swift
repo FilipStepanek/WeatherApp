@@ -17,26 +17,25 @@ struct TodayView: View {
             case .loading:
                 LoadingView()
             case .missingLocation:
-                EnableLocationView(locationManager: viewModelToday.locationManager)
+                EnableLocationView()
             case .succes(let currentResponse):
-                TodayViewContent(weatherManager: WeatherManager(), weather: currentResponse)
+                TodayViewContent(weather: currentResponse)
             case .error:
-                ErrorFetchingDataView()
+                ErrorFetchingDataView {
+                    viewModelToday.onRefresh()
+                }
             case .errorNetwork:
                 ErrorInternetConnectionView {
                     viewModelToday.onRefresh()
                 }
             }
         }
-        .task {
-            viewModelToday.initialLoad()
-        }
+        .environmentObject(viewModelToday)
     }
 }
 
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
-    }
+#if DEBUG
+#Preview {
+    TodayView()
 }
-
+#endif

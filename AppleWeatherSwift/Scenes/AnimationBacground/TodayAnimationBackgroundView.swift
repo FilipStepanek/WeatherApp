@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Shared 
 
 struct TodayAnimationBackgroundView: View {
     let endRadiusSize = 450
-    var weather: CurrentResponse
+    let weather: CurrentResponse
     
     @State var xpos: CGFloat
     @State var ypos: CGFloat = 0
@@ -24,22 +25,22 @@ struct TodayAnimationBackgroundView: View {
     var body: some View {
         ZStack {
             Circle()
-                        .fill(
-                            RadialGradient(
-                                gradient: Gradient(colors: [WeatherManagerExtension().getColor1(icon: weather.weather.first?.icon ?? ""), WeatherManagerExtension().getColor2(icon: weather.weather.first?.icon ?? ""), .mainBackground]),
-                                center: .center, startRadius: 0, endRadius: 400)
-                            )
-                        .frame(width: 400, height: 400)
+                .fill(
+                    RadialGradient(
+                        gradient: Gradient(colors: [WeatherManagerExtension().getColor1(icon: weather.weather.first?.icon ?? ""), WeatherManagerExtension().getColor2(icon: weather.weather.first?.icon ?? ""), .mainBackground]),
+                        center: .center, startRadius: 0, endRadius: 400)
+                )
+                .frame(width: 400, height: 400)
                 .blur(radius: 90)
                 .scaleEffect(pulsate ? 1.6 : 1.2)
                 .position(x: xpos, y: ypos)
                 .animation(.easeInOut(duration: 7.0).repeatForever(autoreverses: true), value: xpos)
                 .onAppear() {
                     self.pulsate.toggle()
-
+                    
                 }
         }
-
+        
         .onAppear {
             xpos = UIScreen.main.bounds.width - 0
         }
@@ -49,6 +50,8 @@ struct TodayAnimationBackgroundView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    TodayAnimationBackgroundView(weather: previewWeather)
+    TodayAnimationBackgroundView(weather: .previewMock)
 }
+#endif

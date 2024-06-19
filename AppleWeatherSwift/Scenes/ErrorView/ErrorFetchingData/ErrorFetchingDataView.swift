@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct ErrorFetchingDataView: View {
-    
-    @StateObject private var viewModelToday = TodayViewModel()
-    @StateObject private var viewModelForecast = ForecastViewModel()
+    let onRefreshAction: () -> Void
     
     var body: some View {
         VStack (
@@ -21,11 +20,9 @@ struct ErrorFetchingDataView: View {
                 Spacer()
                 
                 Button(action: {
-                    print("Button pressed Reload")
+                    Logger.viewCycle.info("Button pressed Reload")
                     
-                    Task {
-                        await viewModelForecast.initialLoad()
-                    }
+                    onRefreshAction()
                 }) {
                     Image.systemReload
                         .cornerRadius(40)
@@ -50,16 +47,16 @@ struct ErrorFetchingDataView: View {
             Spacer()
             
         }
-        .padding(.top, 16)
-        .padding()
+        .padding(.top, 0)
+        .padding(.horizontal)
         .background(
             ErrorAnimationBackgroundView()
         )
     }
 }
 
+#if DEBUG
 #Preview {
-    ErrorFetchingDataView()
+    ErrorFetchingDataView(onRefreshAction: {})
 }
-
-
+#endif

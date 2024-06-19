@@ -6,78 +6,66 @@
 //
 
 import SwiftUI
+import OSLog
+import Shared
 
 struct TodayViewContent: View {
     
-    @StateObject private var viewModel = TodayViewModel()
-    var weatherManager = WeatherManager()
-    var weatherManagerExtension = WeatherManagerExtension()
-    
-    @State var isPresented: Bool = false
-    
-    var weather: CurrentResponse
+    @EnvironmentObject private var viewModel: TodayViewModel
+    let weather: CurrentResponse
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                shareButton
-                
-                    .padding(.trailing)
-            }
-            .padding(.top)
-            
-            VStack(alignment: .leading) {
-                ScrollView(showsIndicators: false)
-                {
-                    VStack(alignment: .leading) {
-                        Spacer(minLength: 115)
+        GeometryReader { proxy in
+            ScrollView(showsIndicators: false) {
+                let _ = print(proxy.size.height)
+                VStack(alignment: .leading) {
+                    Spacer(minLength: 70)
+                    
+                    VStack(alignment: .leading, spacing: 48) {
+                        todayTitleInformation
+                            .modifier(ConditionalScrollTransition())
                         
-                        VStack (
-                            alignment: .leading,
-                            spacing: 48
-                        ){
-                            
-                            todayTitleInformation
-                            
-                            todayInformation
-                        }
-                
-                        VStack (
-                            alignment: .leading,
-                            spacing: 15
-                        ){
-                            rectangles
-                            
-                            TodayDetailInfo(weather: weather)
-                            
-                            rectangles
-                        }
-                        .padding(.vertical)
+                        todayInformation
+                            .modifier(ConditionalScrollTransition())
                     }
                     
+                    VStack(alignment: .leading, spacing: 15) {
+                        rectangles
+                            .modifier(ConditionalScrollTransition())
+                        
+                        TodayDetailInfo(weather: weather)
+                            .modifier(ConditionalScrollTransition())
+                        
+                        rectangles
+                            .modifier(ConditionalScrollTransition())
+                    }
                 }
-                .refreshable{
-                    viewModel.onRefresh()
-                }
+                .frame(height: proxy.size.height)
             }
+            
+            .refreshable {
+                viewModel.onRefresh()
+            }
+            
             .padding(.horizontal)
+        }
+        .safeAreaInset(edge: .top, alignment: .trailing) {
+            shareButton
+                .padding(.trailing)
         }
         .background(
             TodayAnimationBackgroundView(weather: weather)
         )
         .sheet(isPresented: $viewModel.isShareSheetPresented) {
-            ShareSheetView(activityItems: [ URL(string: "https://openweathermap.org")!])
+            ShareSheetView(activityItems: [URL(string: Constants.openWeatherMapURL) as Any])
                 .presentationDetents([.medium, .large])
-            
         }
     }
+    
     @ViewBuilder
     var shareButton: some View {
-        
         Button(action: {
-            print("Button pressed Share")
+            Logger.viewCycle.info("Button pressed Share")
             viewModel.isShareSheetPresented = true
         }) {
             Text("share.button.title")
@@ -93,22 +81,22 @@ struct TodayViewContent: View {
         Text(WeatherManagerExtension().getWeatherInfoFromWeatherIcon(icon: weather.weather.first?.icon ?? "", temperature: weather.main.temp))
             .modifier(TitleModifier())
             .foregroundColor(.mainText)
+            .lineLimit(2)
+            .minimumScaleFactor(0.8)
     }
     
     var rectangles: some View {
         Rectangle()
             .frame(maxHeight: 1)
-            .foregroundColor(.devider)
+            .foregroundColor(.divider)
     }
     
     @ViewBuilder
     var todayInformation: some View {
-        
-        let temperature = Int(weather.main.temp.rounded())
         let temperatureWithUnits = "\(temperatureUnitSymbol())"
         
-        VStack (alignment: .leading, spacing: -4) {
-            Image(weatherManagerExtension.getImageNameForWeatherIcon(icon: weather.weather.first?.icon ?? ""))
+        VStack(alignment: .leading, spacing: -4) {
+            Image(viewModel.weatherManagerExtension.getImageNameFromWeatherIcon(icon: weather.weather.first?.icon ?? ""))
                 .resizable()
                 .scaledToFit()
                 .aspectRatio(contentMode: .fit)
@@ -118,9 +106,9 @@ struct TodayViewContent: View {
                 .modifier(TemperatureModifier())
                 .padding(.vertical, 4)
             
-            Text((weather.name ) + ", " + (String().countryName(countryCode: weather.sys.country ) ?? "Unknown"))
-                        .modifier(ContentModifier())
-                        .padding(.vertical, 8)
+            Text((weather.name) + ", " + (String().countryName(countryCode: weather.sys.country) ?? "Unknown"))
+                .modifier(ContentModifier())
+                .padding(.vertical, 8)
         }
     }
     
@@ -133,10 +121,8 @@ struct TodayViewContent: View {
     }
 }
 
-
-
-struct TodayViewContent_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayViewContent(weather: previewWeather)
-    }
+#if DEBUG
+#Preview {
+    TodayViewContent(weather: .previewMock)
 }
+#endif
